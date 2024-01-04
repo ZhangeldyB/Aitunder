@@ -22,12 +22,12 @@ var connection *mongo.Collection
 func init() {
 	clientOption := options.Client().ApplyURI(connectionString)
 	client, err := mongo.Connect(context.TODO(), clientOption)
-	if err != nil{
+	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println("MongoDB connection success")
 
-	collection = client.Database(dbName).Collection(colName)
+	connection = client.Database(dbName).Collection(colName)
 
 }
 
