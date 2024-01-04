@@ -1,15 +1,38 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"os"
+
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+const connectionString = "mongodb+srv://zhangeldy:lemPrXZ1mCeuD0Gn@aitunder.bkn7epv.mongodb.net/?retryWrites=true&w=majority"
+const dbName = "aitunder"
+const colName = "users"
+
+var connection *mongo.Collection
+
+func init() {
+	clientOption := options.Client().ApplyURI(connectionString)
+	client, err := mongo.Connect(context.TODO(), clientOption)
+	if err != nil{
+		log.Fatal(err)
+	}
+	fmt.Println("MongoDB connection success")
+
+	collection = client.Database(dbName).Collection(colName)
+
+}
+
 func pageHandler(w http.ResponseWriter, r *http.Request) {
-	htmlContent, err := os.ReadFile("login.html")
+	htmlContent, err := os.ReadFile("webPages/login.html")
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
