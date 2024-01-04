@@ -17,7 +17,7 @@ const connectionString = "mongodb+srv://zhangeldy:lemPrXZ1mCeuD0Gn@aitunder.bkn7
 const dbName = "aitunder"
 const colName = "users"
 
-var connection *mongo.Collection
+var collection *mongo.Collection
 
 func init() {
 	clientOption := options.Client().ApplyURI(connectionString)
@@ -27,7 +27,7 @@ func init() {
 	}
 	fmt.Println("MongoDB connection success")
 
-	connection = client.Database(dbName).Collection(colName)
+	collection = client.Database(dbName).Collection(colName)
 
 }
 
