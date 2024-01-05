@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Aitunder/mongodb"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -19,7 +20,7 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(htmlContent)
 }
 
-func loginHandler(w http.ResponseWriter, r *http.Request) {
+func SignUpHandler(w http.ResponseWriter, r *http.Request) {
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Error reading request body", http.StatusBadRequest)
@@ -39,7 +40,7 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/main", pageHandler)
-	http.HandleFunc("/login", loginHandler)
+	http.HandleFunc("/api/signUp", mongodb.AddUser)
 	fmt.Println("Server is running on http://localhost:8080/main")
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {

@@ -45,6 +45,10 @@
         <div class="row">
             <form class="col-xl-4 mx-auto" action="/login" method="post">
                 <div class="form-floating mb-3">
+                    <input type="text" id="nameInput" name="name" class="form-control" placeholder="Kabob">
+                    <label for="nameInput">Name</label>
+                </div>
+                <div class="form-floating mb-3">
                     <input type="text" id="emailInput" name="email" class="form-control" placeholder="kabob@example.kz">
                     <label for="emailInput">Email address</label>
                 </div>
@@ -66,11 +70,12 @@
                 event.preventDefault();
     
                 var formData = {
+                    name: document.getElementById('nameInput').value,
                     email: document.getElementById('emailInput').value,
                     password: document.getElementById('passwordLabel').value
                 };
     
-                fetch('/login', {
+                fetch('/api/signUp', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
