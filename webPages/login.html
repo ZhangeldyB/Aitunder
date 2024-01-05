@@ -22,23 +22,19 @@
                     
                     </div>
             </div>
-            <form class="col-md-6" action="/login" method="post">
-                <h2 class="text-center" style="font-size: 1.7em; margin-bottom: 30px;">Register</h2>
-                <div class="form-floating mb-5">
-                    <input type="text" id="nameInput" name="name" class="form-control" placeholder="Kabob" style="font-size: 1.2em;">
-                    <label for="nameInput" style="font-size: 1.2em;" >Name</label>
-                </div>
+            <form class="col-md-6" action="/api/login" method="post">
+                <h2 class="text-center" style="font-size: 1.7em; margin-bottom: 30px;">Login</h2>
                 <div class="form-floating mb-5">
                     <input type="text" id="emailInput" name="email" class="form-control" placeholder="kabob@example.kz" style="font-size: 1.2em;">
                     <label for="emailInput" style="font-size: 1.2em;">Email address</label>
                 </div>
                 <div class="form-floating mb-5">
-                    <input type="text" id="passwordLabel" name="password" class="form-control" placeholder="Qqwerty1!" style="font-size: 1.2em;">
-                    <label for="passwordLabel" style="font-size: 1.2em;">User's password</label>
+                    <input type="password" id="passwordInput" name="password" class="form-control" placeholder="Qqwerty1!" style="font-size: 1.2em;">
+                    <label for="passwordInput" style="font-size: 1.2em;">Password</label>
                 </div> 
                 <div class="d-grid gap-2">
-                <button class="btn btn-dark" type="submit" style="font-size: 1.2em;">Submit form</button>
-            </div>
+                    <button class="btn btn-dark" type="submit" style="font-size: 1.2em;">Login</button>
+                </div>
             </form>
         </div>
     </div>
@@ -49,7 +45,7 @@
             
         </div>
         <div class="col-md-6 text-center">
-            <a href="/login" style="font-size: 1.2em;">Sign In</a> | <a href="#" style="font-size: 1.2em;">Forgot Password</a> 
+            <a href="/main" style="font-size: 1.2em;">Sign Up</a> | <a href="#" style="font-size: 1.2em;">Forgot Password</a> 
         </div>
     </div>
 </div>
@@ -64,12 +60,11 @@
                 event.preventDefault();
     
                 var formData = {
-                    name: document.getElementById('nameInput').value,
                     email: document.getElementById('emailInput').value,
-                    password: document.getElementById('passwordLabel').value
+                    password: document.getElementById('passwordInput').value
                 };
     
-                fetch('/api/signUp', {
+                fetch('/api/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

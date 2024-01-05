@@ -43,3 +43,13 @@ func getAllUsers() []primitive.D {
 	}
 	return users
 }
+
+func getOneUserByEmail(email string) (*models.User, error){
+	var user models.User
+	filter := bson.M{"email": email}
+	err := collection.FindOne(context.Background(), filter).Decode(&user)
+	if err != nil {
+		return nil, err
+	}
+	return &user, nil
+}

@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"io"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -46,3 +47,56 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(user)
 }
 
+func LoginHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Allow-Control-Allow-Methods", "POST")
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, "Error reading request body", http.StatusBadRequest)
+		fmt.Println("Error reading request body")
+		return
+	}
+	defer r.Body.Close()
+
+	var data map[string]interface{}
+	err = json.Unmarshal(body, &data)
+	if err != nil {
+		http.Error(w, "Error unmarshaling request body", http.StatusBadRequest)
+		fmt.Println("Error unmarshaling request body")
+		return
+	}
+
+	email, ok := data["email"].(string)
+	if !ok {
+		http.Error(w, "Invalid email format", http.StatusBadRequest)
+		fmt.Print("Invalid email format")
+		return
+	}
+
+	password, ok := data["password"].(string)
+	if !ok {
+		http.Error(w, "Invalid password format", http.StatusBadRequest)
+		fmt.Print("Invalid password format")
+		return
+	}
+
+	user, err := getOneUserByEmail(email)
+	if err != nil {
+		http.Error(w, "Error checking user credentials", http.StatusInternalServerError)
+		fmt.Print("Error checking user credentials")
+		return
+	}
+
+	if user != nil && user.Password == password {
+		// User authenticated successfully
+		// You can set session/cookie here or return a token for further authorization
+		fmt.Println("Login successful")
+		json.NewEncoder(w).Encode(map[string]string{"message": "Login successful"})
+		http.Redirect(w, r, "/home", http.StatusFound)
+		return
+	} else {
+		http.Error(w, "Invalid email or password", http.StatusUnauthorized)
+		fmt.Print("Invalid email or password")
+		return
+	}
+}
