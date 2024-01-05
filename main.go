@@ -10,7 +10,7 @@ import (
 )
 
 func pageHandler(w http.ResponseWriter, r *http.Request) {
-	htmlContent, err := os.ReadFile("webPages/login.html")
+	htmlContent, err := os.ReadFile("webPages/registration.html")
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
