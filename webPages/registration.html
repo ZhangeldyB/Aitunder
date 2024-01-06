@@ -27,14 +27,17 @@
                 <div class="form-floating mb-5">
                     <input type="text" id="nameInput" name="name" class="form-control" placeholder="Kabob" style="font-size: 1.2em;">
                     <label for="nameInput" style="font-size: 1.2em;" >Name</label>
+                    <div id="nameError" class="text-center text-danger"></div>
                 </div>
                 <div class="form-floating mb-5">
                     <input type="text" id="emailInput" name="email" class="form-control" placeholder="kabob@example.kz" style="font-size: 1.2em;">
                     <label for="emailInput" style="font-size: 1.2em;">Email address</label>
+                    <div id="emailError" class="text-center text-danger"></div>
                 </div>
                 <div class="form-floating mb-5">
-                    <input type="text" id="passwordLabel" name="password" class="form-control" placeholder="Qqwerty1!" style="font-size: 1.2em;">
-                    <label for="passwordLabel" style="font-size: 1.2em;">User's password</label>
+                    <input type="text" id="passwordInput" name="password" class="form-control" placeholder="Qqwerty1!" style="font-size: 1.2em;">
+                    <label for="passwordInput" style="font-size: 1.2em;">User's password</label>
+                    <div id="passwordError" class="text-center text-danger"></div>
                 </div> 
                 <div class="d-grid gap-2">
                 <button class="btn btn-dark" type="submit" style="font-size: 1.2em;">Submit form</button>
@@ -81,6 +84,43 @@
                 .catch(error => console.error('Error:', error));
             });
         });
+        document.getElementById("nameInput").addEventListener("input", function(){
+            validateName();
+        })
+        document.getElementById("emailInput").addEventListener("input", function(){
+            validateEmail();
+        })
+        document.getElementById("passwordInput").addEventListener("input", function(){
+            validatePassword();
+        })
+        function validateName() {
+            const name = document.getElementById("nameInput").value;
+            const nameRegex = /^[a-zA-Z]{2,}$/;
+            if (!name.match(nameRegex)) {
+                document.getElementById("nameError").innerText = "Name should be at least 2 characters long and must not contain numbers.";
+            } else {
+                document.getElementById("nameError").innerText = "";
+            }
+        }
+        function validateEmail(){
+            const email = document.getElementById("emailInput").value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.match(emailRegex)) {
+                document.getElementById("emailError").innerText = "Please enter a valid email address.";
+            } else {
+                document.getElementById("emailError").innerText = "";
+            }
+        }
+
+        function validatePassword() {
+            const password = document.getElementById("passwordInput").value;
+            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+            if (!password.match(passwordRegex)) {
+                document.getElementById("passwordError").innerText = "Password should be at least 6 characters long and contain at least one number, one uppercase letter, and one lowercase letter.";
+            } else {
+                document.getElementById("passwordError").innerText = "";
+            }
+        }
     </script>
 </body>
 </html>
