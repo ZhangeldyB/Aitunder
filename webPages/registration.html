@@ -7,22 +7,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
      rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
-<body style="margin-top: 19%;">
+<body class="d-flex align-items-center" style="height: 100vh;">
 
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-6">
-                <div class = "container mt-5" >
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 text-center">
-                            <h1 style="font-size: 3em;">AITUNDER</h1>
-                            <p style="font-size: 1.2em;"> Keep in touch</p>
-                        </div>
-                    </div>
-                    
-                    </div>
+            <div class="col-md-6 text-center d-grid align-items-center">
+                <div>
+                    <h1 style="font-size: 3em;">AITUNDER</h1>
+                    <p style="font-size: 1.2em;"> Keep in touch</p>
+                </div>
             </div>
-            <form class="col-md-6" action="/login" method="post">
+            <form class="col-md-6" action="/api/signUp" method="post">
                 <h2 class="text-center" style="font-size: 1.7em; margin-bottom: 30px;">Register</h2>
                 <div class="form-floating mb-5">
                     <input type="text" id="nameInput" name="name" class="form-control" placeholder="Kabob" style="font-size: 1.2em;">
@@ -40,22 +35,14 @@
                     <div id="passwordError" class="text-center text-danger"></div>
                 </div> 
                 <div class="d-grid gap-2">
-                <button class="btn btn-dark" type="submit" style="font-size: 1.2em;">Submit form</button>
-            </div>
+                <button class="btn btn-dark" id="submit" type="submit" style="font-size: 1.2em;" disabled>Submit form</button>
+                </div>
+                <div class="text-center">
+                    <a href="/login" style="font-size: 1.2em;">Sign In</a> | <a href="#" style="font-size: 1.2em;">Forgot Password</a> 
+                </div>
             </form>
         </div>
     </div>
-
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-6 text-center">
-            
-        </div>
-        <div class="col-md-6 text-center">
-            <a href="/login" style="font-size: 1.2em;">Sign In</a> | <a href="#" style="font-size: 1.2em;">Forgot Password</a> 
-        </div>
-    </div>
-</div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
@@ -65,11 +52,11 @@
             var form = document.querySelector('form');
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
-    
+
                 var formData = {
                     name: document.getElementById('nameInput').value,
                     email: document.getElementById('emailInput').value,
-                    password: document.getElementById('passwordLabel').value
+                    password: document.getElementById('passwordInput').value
                 };
     
                 fetch('/api/signUp', {
@@ -96,8 +83,9 @@
         function validateName() {
             const name = document.getElementById("nameInput").value;
             const nameRegex = /^[a-zA-Z]{2,}$/;
-            if (!name.match(nameRegex)) {
-                document.getElementById("nameError").innerText = "Name should be at least 2 characters long and must not contain numbers.";
+            const isValid = name.match(nameRegex);
+            if (!isValid) {
+                document.getElementById("nameError").innerText = "Name should be at least 2 characters long and must not contain numbers or other symbols.";
             } else {
                 document.getElementById("nameError").innerText = "";
             }
@@ -105,22 +93,52 @@
         function validateEmail(){
             const email = document.getElementById("emailInput").value;
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!email.match(emailRegex)) {
+            const isValid = email.match(emailRegex);
+            if (!isValid) {
                 document.getElementById("emailError").innerText = "Please enter a valid email address.";
             } else {
                 document.getElementById("emailError").innerText = "";
             }
+            return isValid
         }
 
         function validatePassword() {
             const password = document.getElementById("passwordInput").value;
             const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-            if (!password.match(passwordRegex)) {
+            const isValid = password.match(passwordRegex);
+            if (!isValid) {
                 document.getElementById("passwordError").innerText = "Password should be at least 6 characters long and contain at least one number, one uppercase letter, and one lowercase letter.";
             } else {
                 document.getElementById("passwordError").innerText = "";
             }
+            return isValid
         }
+        let inputs = document.querySelectorAll("input");
+        let buttonSend = document.getElementById("submit");
+        let inputValidator = {
+            "name": false,
+            "email": false,
+            "password": false
+        }
+
+        inputs.forEach((input) => {
+            input.addEventListener('input', () => {
+                let name = event.target.getAttribute('name');
+                if (event.target.value.length > 0) {
+                    inputValidator[name] = true;
+                } else {
+                    inputValidator[name] = false;
+                };
+                let allTrue = Object.keys(inputValidator).every((item) => {
+                    return inputValidator[item] === true
+                });
+                if (allTrue) {
+                    buttonSend.disabled = false;
+                } else {
+                    buttonSend.disabled = true;
+                }
+            })
+        })
     </script>
 </body>
 </html>

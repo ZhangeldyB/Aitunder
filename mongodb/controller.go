@@ -5,9 +5,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
-	"io"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -69,34 +69,32 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	email, ok := data["email"].(string)
 	if !ok {
 		http.Error(w, "Invalid email format", http.StatusBadRequest)
-		fmt.Print("Invalid email format")
+		fmt.Println("Invalid email format")
 		return
 	}
 
 	password, ok := data["password"].(string)
 	if !ok {
 		http.Error(w, "Invalid password format", http.StatusBadRequest)
-		fmt.Print("Invalid password format")
+		fmt.Println("Invalid password format")
 		return
 	}
 
 	user, err := getOneUserByEmail(email)
 	if err != nil {
-		http.Error(w, "Error checking user credentials", http.StatusInternalServerError)
-		fmt.Print("Error checking user credentials")
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Wrong credentials", "status": 400})
+		fmt.Println("Error checking user credentials")
 		return
 	}
 
 	if user != nil && user.Password == password {
-		// User authenticated successfully
-		// You can set session/cookie here or return a token for further authorization
 		fmt.Println("Login successful")
-		json.NewEncoder(w).Encode(map[string]string{"message": "Login successful"})
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Login successful", "status": 200})
 		http.Redirect(w, r, "/home", http.StatusFound)
 		return
 	} else {
-		http.Error(w, "Invalid email or password", http.StatusUnauthorized)
-		fmt.Print("Invalid email or password")
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Wrong credentials", "status": 400})
+		fmt.Println("Invalid email or password")
 		return
 	}
 }

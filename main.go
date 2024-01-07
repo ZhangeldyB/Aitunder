@@ -15,14 +15,11 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
 	case "/login":
 		servePage(w, "webPages/login.html")
 	case "/home":
-		servePage(w, "webPager/home.html")
+		servePage(w, "webPages/home.html")
 	default:
 		http.NotFound(w, r)
 	}
 }
-
-
-
 
 func servePage(w http.ResponseWriter, pagePath string) {
 	htmlContent, err := os.ReadFile(pagePath)
