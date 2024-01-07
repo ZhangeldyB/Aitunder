@@ -50,14 +50,22 @@ Tinder features that will be implemented in this project: (*in order to understa
 
 **Step-by-step instructions for launching the application (server, webpage, etc.)**
 
-hereeeee .......................
+1. Dovnload the project to your pc an unzip the file or clone the repo. 
+2. Open the folder in Visual Studio Code or other IDE
+3. open the terminal
+4. run the code using:
+```
+/go run main.go
+```
+to build a project run:
+```
+/go build
+```
 
 **Future features and technical solutions:**
 
-НАДО ИСПРАВИТЬ ИЛИ УДАЛИТЬ СОВСЕМ ХЗ
-
 - Swipe-able cards with swipe animations (JS)
-- Matching algorithm
+- Matching algorithm (use of GET)
 - Context API with a custom AuthProvider & useAuth hook
 - Navigation including popup Modals
 - Registration and/or login
