@@ -1,8 +1,8 @@
 # Aitunder
 
-Team Members: Beisenov Zhangeldy (SE-2208), Ali Samal (SE-2219)
+**Team Members:** Beisenov Zhangeldy (SE-2208), Ali Samal (SE-2219)
 
-**A brief discussion on project relevance/motivations**
+**A brief discussion on project relevance/motivations and principles of operations**
 
 The main problem is the problem of finding partners among university students. Because of this, there is a need to create a favorable environment for the development of students' social life, the creation of new ideas and projects. Therefore, we had the idea to create a website to search for like-minded people or events of interest to AITU students.
 
