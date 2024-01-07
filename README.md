@@ -41,7 +41,6 @@ Features:
 
 Headhunter is the largest online recruitment company developing business in Russia, Belarus, Kazakhstan. Headhunter's clients are over 515 thousand companies. The extensive database of applicants for HH contains more than 55 million resumes, and the average daily number of vacancies exceeds 933 thousand.
 
-
 | **Advantages** | **Disadvantages** |
 | --- | --- |
 | Tinder |
@@ -49,35 +48,7 @@ Headhunter is the largest online recruitment company developing business in Russ
 | HeadHunter |
 | · Gives you the opportunity to quickly find a job;· Employers can select a suitable employee through the attached resume remotely;· Absolutely free application and website for people who are looking for a job; | · After registration, a lot of spam emails come to the site;· There are a lot of unnecessary ads and scams;· It is expensive for employers to place an ad;· The interface is not very clear; you need to study a little; |
 
-
-**Example of the registration format:**
-
-| Column | Datatype | Length | Attributes | Example |
-| --- | --- | --- | --- | --- |
-| User\_id | Int | 11 | Primary key, auto increment | 1 |
-| Full Name | Varchar | 50 |
- | Ivanov Danya |
-| Gender | Varchar | 6 |
- | Male |
-| Login | Varchar | 20 |
- | Danya123 |
-| Password | Varchar | 10 |
- | Qqwerty1! |
-| Email | Varchar | 30 |
- | Danya@mail.ru |
-| Phone | Int | 11 |
- | +7 777 777 88 99 |
-| Group number | Varchar | 8 |
- | SE-2013 |
-
-**Inputs and outputs of the system:**
-
-| Inputs | Process |
-| --- | --- |
-| Fullname GenderLoginPasswordEmailPhoneGroup number | RegistrationAuthorizationFinding suitable project(s)Contacting with other |
-| Outputs | Storage |
-| Description of projects | users |
-
+ 
 Our application also will consist of the following technical solutions:
 
 - Swipe-able cards with swipe animations (JS)
@@ -93,26 +64,3 @@ Functions:
 - Creating profile questionnaires
 - Possibility of choice - refusal or approval (swipe cards)
 - Matching users together who swipe on each other
-
-Initial project drawing:
-
-![](RackMultipart20240107-1-ktwpnh_html_5d480d72cfc98c68.jpg)
-
-![](RackMultipart20240107-1-ktwpnh_html_484e2107e5690d30.jpg)
-
-Sample design of the project (October 22):
-
-![](RackMultipart20240107-1-ktwpnh_html_a38b260cb6b940fa.png)
-
-![](RackMultipart20240107-1-ktwpnh_html_5c018b724618190b.png)
-
-Features planned in the future:
-
-- Google Sign In
-- Integration with social networks
-- News Feed (with different ads)
-- Notifications from the university
-- Link Microsoft Accounts
-
-**Product Description**
-
