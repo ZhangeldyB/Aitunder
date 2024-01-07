@@ -1,6 +1,6 @@
 # Aitunder
 
-**Team Members:** Beisenov Zhangeldy (SE-2208), Ali Samal (SE-2219)
+**Team Members:** Zhangeldy Beisenov (SE-2208), Samal Ali (SE-2219)
 
 **A brief discussion on project relevance/motivations and principles of operations**
 
