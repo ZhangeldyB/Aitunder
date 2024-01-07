@@ -8,59 +8,65 @@ Group: SE-2208, SE-2219
 
 The main problem is the problem of finding partners among university students. Because of this, there is a need to create a favorable environment for the development of students' social life, the creation of new ideas and projects. Therefore, we had the idea to create a website to search for like-minded people or events of interest to AITU students.
 
+We were inspired by the concept of Tinder, but its functionality is not suitable for creating a working atmosphere, so we found some solutions in Headhunter. 
+Tinder is an application for online dating and geosocial networks. On Tinder, users "swipe right" to like, or "swipe left" to dislike other users' profiles, which include their photos, a brief biography and a list of their interests. Tinder uses a "double sign-up" system where both users have to like each other before they can exchange messages.
+
+Tinder features that will be implemented in this project: (*in order to understand how it will work*)
+
+- Swipe is central to Tinder's design. The app's algorithm presents profile to users, who then swipe right to "like" potential matches and swipe left to continue their search.
+- Messaging is also a heavily utilized feature. Once a user matches with another user, they are able to exchange text messages on the app.
+
 **Technical specifications of the project**
 
-The project is a web application developed in Go (Golang) for user registration and authentication. The frontend is built using HTML with Bootstrap for styling, and the backend utilizes Go's HTTP package to handle server-side logic. The application interacts with a MongoDB database for user data storage. The code is organized into several components: HTML templates for user interfaces, Go files for server-side logic, and a MongoDB package for database operations.
+1.  HTML Templates:
 
-Frontend:
-The HTML files (login.html and registration.html) define the structure and styling of the user interfaces. Bootstrap is used for a responsive and visually appealing design. The login page provides a form for users to enter their email and password, while the registration page includes additional fields for the user's name. JavaScript is used for client-side form validation, ensuring that users provide valid information before submitting the forms.
+    -   `login.html`: Represents the login page interface, containing the login form and associated elements.
+    -   `registration.html`: Represents the registration page interface, containing the registration form with additional fields for user information.
 
-Backend:
-The Go code consists of two main parts: the server logic (main.go) and the MongoDB operations (mongodb.go). The server handles HTTP requests and routes them to the appropriate HTML templates based on the requested path ("/main" for registration and "/login" for login). It also includes API endpoints ("/api/signUp" and "/api/login") for handling user registration and authentication, respectively. The MongoDB package connects to a MongoDB database hosted on MongoDB Atlas and performs operations such as user insertion, deletion, retrieval, and authentication.
+2.  Go (Golang) Server and Routing:
 
+    -   `main.go`: Serves as the main entry point for the Go application. It initializes and starts the HTTP server, handles routing for different URL paths ("/main", "/login", "/home"), and includes logic to serve corresponding HTML templates based on the requested path. Additionally, it defines API endpoints ("/api/signUp" and "/api/login") for user registration and authentication.
+
+3.  MongoDB Operations:
+
+    -   Helper Functions (`helper.go`):
+
+        -   `insertOneUser(user models.User)`: Inserts a new user into the MongoDB database.
+        -   `deleteOneUser(userId string)`: Deletes a user from the database based on their ID.
+        -   `getAllUsers() []primitive.D`: Retrieves all users from the database as an array of BSON documents.
+        -   `getOneUserByEmail(email string) (*models.User, error)`: Retrieves a user by their email address.
+    -   Controller Functions (`controller.go`):
+
+        -   `init()`: Initializes the MongoDB connection and sets up the MongoDB collection.
+        -   `GetAllUsers(w http.ResponseWriter, r *http.Request)`: Handles the HTTP GET request to retrieve all users and responds with JSON data.
+        -   `AddUser(w http.ResponseWriter, r *http.Request)`: Handles the HTTP POST request to add a new user to the database and responds with the added user's JSON data.
+        -   `LoginHandler(w http.ResponseWriter, r *http.Request)`: Handles the HTTP POST request for user login, checking credentials against the database and responding accordingly.
+
+4.  User Model:
+
+    -   `models.go`: Defines the data model for the user entity. The `User` struct includes fields such as ID, Name, Email, and Password, mapped to MongoDB BSON properties.
 
 ![main page](image.png)
 
 ![login](image-1.png)
 
-**Analysis of the existing systems:**
+**Step-by-step instructions for launching the application (server, webpage, etc.)**
 
-We were inspired by the concept of Tinder, but its functionality is not suitable for creating a working atmosphere, so we found some solutions in Headhunter.
+hereeeee .......................
 
-Tinder is an application for online dating and geosocial networks. On Tinder, users "swipe right" to like, or "swipe left" to dislike other users' profiles, which include their photos, a brief biography and a list of their interests. Tinder uses a "double sign-up" system where both users have to like each other before they can exchange messages.
+**Future features and technical solutions:**
 
-Features:
-
-**Swipe** is central to Tinder's design. The app's algorithm presents profile to users, who then swipe right to "like" potential matches and swipe left to continue their search.
-
-**Messaging** is also a heavily utilized feature. Once a user matches with another user, they are able to exchange text messages on the app.
-
-**Face to Face** is Tinder's video chat feature that allows users who have matched to see each other virtually. It was implemented in July 2020.
-
-**Instagram** integration lets users view other users' Instagram profiles.
-
-Headhunter is the largest online recruitment company developing business in Russia, Belarus, Kazakhstan. Headhunter's clients are over 515 thousand companies. The extensive database of applicants for HH contains more than 55 million resumes, and the average daily number of vacancies exceeds 933 thousand.
-
-| **Advantages** | **Disadvantages** |
-| --- | --- |
-| Tinder |
-| · Makes it possible to find new friends, partners, brings people closer;· Easy to use, with a clear interface, understandable;· There is double verification, which is a more secure applicationж | · The app has paid content;· Chances of being played or cheated, especially in relationships, because people's data is not checked for correctness;· The goal is only to find a person for a relationship; |
-| HeadHunter |
-| · Gives you the opportunity to quickly find a job;· Employers can select a suitable employee through the attached resume remotely;· Absolutely free application and website for people who are looking for a job; | · After registration, a lot of spam emails come to the site;· There are a lot of unnecessary ads and scams;· It is expensive for employers to place an ad;· The interface is not very clear; you need to study a little; |
-
- 
-Our application also will consist of the following technical solutions:
+НАДО ИСПРАВИТЬ ИЛИ УДАЛИТЬ СОВСЕМ ХЗ
 
 - Swipe-able cards with swipe animations (JS)
 - Matching algorithm
 - Context API with a custom AuthProvider & useAuth hook
 - Navigation including popup Modals
-
-**Main functions, prototyping and prospects**
-
-Functions:
-
 - Registration and/or login
 - Creating profile questionnaires
 - Possibility of choice - refusal or approval (swipe cards)
 - Matching users together who swipe on each other
+
+**Tools used, links to sources:**
+
+https://www.youtube.com/watch?v=laeZI6UdDNg&list=PLRAV69dS1uWQGDQoBYMZWKjzuhCaOnBpa&index=43&ab_channel=HiteshChoudhary
