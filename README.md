@@ -1,8 +1,6 @@
 # Aitunder
 
-Beisenov Zhangeldy, Ali Samal
-
-Group: SE-2208, SE-2219
+Team Members: Beisenov Zhangeldy (SE-2208), Ali Samal (SE-2219)
 
 **A brief discussion on project relevance/motivations**
 
