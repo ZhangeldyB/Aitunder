@@ -8,7 +8,6 @@ import (
 )
 
 func pageHandler(w http.ResponseWriter, r *http.Request) {
-	// Determine which page to serve based on the request path
 	switch r.URL.Path {
 	case "/main":
 		servePage(w, "webPages/registration.html")
