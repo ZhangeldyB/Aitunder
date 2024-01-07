@@ -43,8 +43,12 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 
 	var user models.User
 	_ = json.NewDecoder(r.Body).Decode(&user)
-	insertOneUser(user)
-	json.NewEncoder(w).Encode(user)
+	err := insertOneUser(user)
+	if err != nil {
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Email already used", "status": 400})
+		return
+	}
+	json.NewEncoder(w).Encode(map[string]interface{}{"message": "Account created successfully", "status": 200})
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {

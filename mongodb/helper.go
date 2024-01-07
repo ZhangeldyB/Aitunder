@@ -10,12 +10,13 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func insertOneUser(user models.User) {
+func insertOneUser(user models.User) error {
 	inserted, err := collection.InsertOne(context.Background(), user)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 	fmt.Println("inserted one user in database with id: ", inserted.InsertedID)
+	return nil
 }
 
 func deleteOneUser(userId string) {
@@ -44,7 +45,7 @@ func getAllUsers() []primitive.D {
 	return users
 }
 
-func getOneUserByEmail(email string) (*models.User, error){
+func getOneUserByEmail(email string) (*models.User, error) {
 	var user models.User
 	filter := bson.M{"email": email}
 	err := collection.FindOne(context.Background(), filter).Decode(&user)

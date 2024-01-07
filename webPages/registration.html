@@ -67,8 +67,16 @@
                     body: JSON.stringify(formData)
                 })
                 .then(response => response.json())
-                .then(data => console.log(data))
-                .catch(error => console.error('Error:', error));
+                .then(data => {
+                    if (data.status === 400 && data.message === "Email already used") {
+                        alert("User with entered password already exist. Try to use another email.");
+                        window.location.reload();
+                    } else if (data.status === 200 && data.message === "Account created successfully") {
+                        window.location.href = "/home"; 
+                    } else {
+                        console.error("Unexpected response:", data);
+                    }
+                }).catch(error => console.error("Error:", error));
             });
         });
         document.getElementById("nameInput").addEventListener("input", function(){
