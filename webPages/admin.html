@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+      
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Admin Panel</h1>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="users-tab" data-toggle="tab" href="#users" role="tab" aria-controls="users" aria-selected="true">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="projects-tab" data-toggle="tab" href="#projects" role="tab" aria-controls="projects" aria-selected="false">Projects</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <!-- Users Tab -->
+            <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
+                <h1>Users</h1>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <input type="text" id="searchInputUsers" class="form-control mb-3" placeholder="Search...">
+                    </div>
+                    <div class="col-md-6">
+                        <select id="sortUsers" class="form-control mb-3">
+                            <option value="name">Sort by Name</option>
+                            <option value="email">Sort by Email</option>
+                            <option value="dob">Sort by Date of Birth</option>
+                            <!-- Add more sorting options as needed -->
+                        </select>
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Date of Birth</th>
+                            <th>Major</th>
+                            <th>Bio</th>
+                            <th>Academic Interests</th>
+                            <th>Skills</th>
+                            <th>Social Links</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBodyUsers">
+                        <!-- Data will be dynamically populated here -->
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-end" id="paginationUsers">
+                        <!-- Pagination links will be dynamically generated here -->
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Projects Tab -->
+            <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="projects-tab">
+                <h1>Projects</h1>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <input type="text" id="searchInputProjects" class="form-control mb-3" placeholder="Search...">
+                    </div>
+                    <div class="col-md-6">
+                        <select id="sortProjects" class="form-control mb-3">
+                            <option value="title">Sort by Title</option>
+                            <option value="requiredSkills">Sort by Required Skills</option>
+                            <!-- Add more sorting options as needed -->
+                        </select>
+                    </div>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Required Skills</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBodyProjects">
+                        <!-- Data will be dynamically populated here -->
+                    </tbody>
+                </table>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-end" id="paginationProjects">
+                        <!-- Pagination links will be dynamically generated here -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Sample data for users (to be replaced with data from MongoDB)
+        const users = [
+            { id: 1, name: 'John Doe', email: 'john@example.com', password: 'password1', dob: '1990-01-01', major: 'Computer Science', bio: 'Lorem ipsum', academicInterests: 'Web Development', skills: 'HTML, CSS, JavaScript', socialLinks: 'https://github.com/johndoe' },
+            { id: 2, name: 'Jane Smith', email: 'jane@example.com', password: 'password2', dob: '1992-03-15', major: 'Engineering', bio: 'Dolor sit amet', academicInterests: 'Machine Learning', skills: 'Python, TensorFlow', socialLinks: 'https://linkedin.com/in/janesmith' },
+            // Add more sample data here
+        ];
+
+        // Sample data for projects (to be replaced with data from MongoDB)
+        const projects = [
+            { id: 1, title: 'Project 1', description: 'Description of Project 1', requiredSkills: 'Skill 1, Skill 2' },
+            { id: 2, title: 'Project 2', description: 'Description of Project 2', requiredSkills: 'Skill 3, Skill 4' },
+            // Add more sample data here
+        ];
+
+        // Function to render table rows for users
+        function renderTableUsers(page) {
+            const pageSize = 5;
+            const startIndex = (page - 1) * pageSize;
+            const filteredUsers = filterUsers($('#searchInputUsers').val());
+            const paginatedUsers = filteredUsers.slice(startIndex, startIndex + pageSize);
+
+            $('#tableBodyUsers').empty();
+            paginatedUsers.forEach(user => {
+                $('#tableBodyUsers').append(`
+                    <tr>
+                        <td>${user.id}</td>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td>${user.password}</td>
+                        <td>${user.dob}</td>
+                        <td>${user.major}</td>
+                        <td>${user.bio}</td>
+                        <td>${user.academicInterests}</td>
+                        <td>${user.skills}</td>
+                        <td>${user.socialLinks}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary">Edit</button>
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                `);
+            });
+        }
+
+        // Function to render table rows for projects
+        function renderTableProjects(page) {
+            const pageSize = 5;
+            const startIndex = (page - 1) * pageSize;
+            const filteredProjects = filterProjects($('#searchInputProjects').val());
+            const paginatedProjects = filteredProjects.slice(startIndex, startIndex + pageSize);
+
+            $('#tableBodyProjects').empty();
+            paginatedProjects.forEach(project => {
+                $('#tableBodyProjects').append(`
+                    <tr>
+                        <td>${project.id}</td>
+                        <td>${project.title}</td>
+                        <td>${project.description}</td>
+                        <td>${project.requiredSkills}</td>
+                        <td>
+                            <button class="btn btn-sm btn-primary">Edit</button>
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                `);
+            });
+        }
+
+        // Function to filter users based on search input
+        function filterUsers(searchTerm) {
+            return users.filter(user =>
+                user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.major.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.skills.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.academicInterests.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.socialLinks.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+
+        // Function to filter projects based on search input
+        function filterProjects(searchTerm) {
+            return projects.filter(project =>
+                project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                project.requiredSkills.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+
+        // Function to render pagination links for users
+        function renderPaginationUsers() {
+            const totalPages = Math.ceil(filterUsers($('#searchInputUsers').val()).length / 5);
+
+            $('#paginationUsers').empty();
+            for (let i = 1; i <= totalPages; i++) {
+                $('#paginationUsers').append(`
+                    <li class="page-item"><a class="page-link" href="#" onclick="changePageUsers(${i})">${i}</a></li>
+                `);
+            }
+        }
+
+        // Function to render pagination links for projects
+        function renderPaginationProjects() {
+            const totalPages = Math.ceil(filterProjects($('#searchInputProjects').val()).length / 5);
+
+            $('#paginationProjects').empty();
+            for (let i = 1; i <= totalPages; i++) {
+                $('#paginationProjects').append(`
+                    <li class="page-item"><a class="page-link" href="#" onclick="changePageProjects(${i})">${i}</a></li>
+                `);
+            }
+        }
+
+        // Function to change page for users
+        function changePageUsers(page) {
+            renderTableUsers(page);
+        }
+
+        // Function to change page for projects
+        function changePageProjects(page) {
+            renderTableProjects(page);
+        }
+
+        // Initial rendering for users
+        renderTableUsers(1);
+        renderPaginationUsers();
+
+        // Initial rendering for projects
+        renderTableProjects(1);
+        renderPaginationProjects();
+
+        // Event listener for search input for users
+        $('#searchInputUsers').on('input', function () {
+            renderTableUsers(1);
+            renderPaginationUsers();
+        });
+
+        // Event listener for search input for projects
+        $('#searchInputProjects').on('input', function () {
+            renderTableProjects(1);
+            renderPaginationProjects();
+        });
+
+        // Event listener for sorting users
+        $('#sortUsers').on('change', function () {
+            renderTableUsers(1);
+            renderPaginationUsers();
+        });
+
+        // Event listener for sorting projects
+        $('#sortProjects').on('change', function () {
+            renderTableProjects(1);
+            renderPaginationProjects();
+        });
+    </script>
+</body>
+</html>
+

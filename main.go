@@ -15,6 +15,8 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
 		servePage(w, "webPages/login.html")
 	case "/home":
 		servePage(w, "webPages/home.html")
+	case "/admin":
+		servePage(w, "webPages/admin.html")
 	default:
 		http.NotFound(w, r)
 	}
@@ -35,6 +37,7 @@ func main() {
 	http.HandleFunc("/main", pageHandler)
 	http.HandleFunc("/login", pageHandler)
 	http.HandleFunc("/home", pageHandler)
+	http.HandleFunc("/admin", pageHandler)
 	http.HandleFunc("/api/signUp", mongodb.AddUser)
 	http.HandleFunc("/api/login", mongodb.LoginHandler)
 	fmt.Println("Server is running on http://localhost:8080/main")
