@@ -38,6 +38,37 @@ func GetAllUsers(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(allUsers)
 }
 
+func GetAllUsersWithPortfolio(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Content-Type", "application/json")
+    allUsers := getAllUsersWithPortfolioFromDB()
+
+    json.NewEncoder(w).Encode(allUsers)
+}
+
+func getAllUsersWithPortfolioFromDB() []models.User {
+    var users []models.User
+
+    // Query all users with their portfolios from the database
+    cursor, err := collection.Aggregate(context.TODO(), mongo.Pipeline{
+        bson.D{{"$lookup", bson.D{{"from", "portfolio"}, {"localField", "_id"}, {"foreignField", "userId"}, {"as", "portfolio"}}}},
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Decode each user with its portfolio
+    for cursor.Next(context.Background()) {
+        var user models.User
+        if err := cursor.Decode(&user); err != nil {
+            log.Fatal(err)
+        }
+        users = append(users, user)
+    }
+
+    return users
+}
+
+
 func AddUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Allow-Control-Allow-Methods", "POST")

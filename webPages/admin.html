@@ -28,6 +28,9 @@
                     <div class="col-md-6">
                         <input type="text" id="searchInputUsers" class="form-control mb-3" placeholder="Search...">
                     </div>
+                
+                    
+                    
                     <div class="col-md-6">
                         <select id="sortUsers" class="form-control mb-3">
                             <option value="name">Sort by Name</option>
@@ -55,14 +58,14 @@
                     <tbody id="tableBodyUsers">
                     </tbody>
                 </table>
-                <!-- <nav aria-label="Page navigation">
+             <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-end" id="paginationUsers">
                     </ul>
-                </nav> -->
+                </nav> 
             </div>
 
             <!-- Projects Tab -->
-            <!-- <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="projects-tab">
+            <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="projects-tab">
                 <h1>Projects</h1>
                 <div class="row mt-3">
                     <div class="col-md-6">
@@ -92,7 +95,7 @@
                     <ul class="pagination justify-content-end" id="paginationProjects">
                     </ul>
                 </nav>
-            </div> -->
+            </div> 
         </div>
     </div>
     <!-- Use the full version of jQuery -->
@@ -193,32 +196,45 @@
         });
     </script> -->
     <script>
-        $(document).ready(function () {
-            $.ajax({
-                url: '/api/getAllUsers', // Replace with your actual endpoint
-                method: 'GET',
-                success: function (data) {
-                    renderUsersTable(data);
-                },
-                error: function (error) {
-                    console.error('Error fetching users:', error);
-                }
-            });
-    
-            function renderUsersTable(users) {
-                $('#tableBodyUsers').empty();
-                users.forEach(user => {
-                    $('#tableBodyUsers').append(`
-                        <tr>
-                            <td>${user.id}</td>
-                            <td>${user.name}</td>
-                            <td>${user.email}</td>
-                            <!-- Add more fields as needed -->
-                        </tr>
-                    `);
-                });
+ $(document).ready(function () {
+    // Function to fetch all users with their portfolios
+    function fetchAllUsersWithPortfolio() {
+        $.ajax({
+            url: '/api/getAllUsersWithPortfolio', // Endpoint to fetch all users with portfolios
+            method: 'GET',
+            success: function (data) {
+                renderUsersTable(data);
+            },
+            error: function (error) {
+                console.error('Error fetching users:', error);
             }
         });
+    }
+
+    // Call the function to fetch all users with portfolios on page load
+    fetchAllUsersWithPortfolio();
+
+    // Function to render users table
+    function renderUsersTable(users) {
+        $('#tableBodyUsers').empty();
+        users.forEach(user => {
+            $('#tableBodyUsers').append(`
+                <tr>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.portfolio.dateOfBirth}</td>
+                    <td>${user.portfolio.major}</td>
+                    <td>${user.portfolio.bio}</td>
+                    <td>${user.portfolio.academicInterests}</td>
+                    <td>${user.portfolio.skills.join(', ')}</td>
+                    <td>${user.portfolio.socialLinks.join(', ')}</td>
+                </tr>
+            `);
+        });
+    }
+});
+
+
     </script>
     
 </body>
