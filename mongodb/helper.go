@@ -28,20 +28,39 @@ func deleteOneUser(userId string) {
 	}
 }
 
-func getAllUsers() []primitive.D {
+// func getAllUsers() []primitive.D {
+// 	cursor, err := collection.Find(context.Background(), bson.D{{}})
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	defer cursor.Close(context.Background())
+// 	var users []primitive.D
+// 	for cursor.Next(context.Background()) {
+// 		var user bson.D
+// 		if err = cursor.Decode(&user); err != nil {
+// 			log.Fatal(err)
+// 		}
+// 		users = append(users, user)
+// 	}
+// 	return users
+// }
+
+func getAllUsersFromDB() []models.User {
 	cursor, err := collection.Find(context.Background(), bson.D{{}})
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer cursor.Close(context.Background())
-	var users []primitive.D
+
+	var users []models.User
 	for cursor.Next(context.Background()) {
-		var user bson.D
+		var user models.User
 		if err = cursor.Decode(&user); err != nil {
 			log.Fatal(err)
 		}
 		users = append(users, user)
 	}
+
 	return users
 }
 

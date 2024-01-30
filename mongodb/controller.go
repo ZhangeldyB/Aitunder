@@ -32,9 +32,9 @@ func init() {
 }
 
 func GetAllUsers(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json") //x-www-form-urlencode
-	allUsers := getAllUsers()
-	
+	w.Header().Set("Content-Type", "application/json")
+	allUsers := getAllUsersFromDB()
+
 	json.NewEncoder(w).Encode(allUsers)
 }
 
