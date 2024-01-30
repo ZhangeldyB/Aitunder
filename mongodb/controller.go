@@ -45,7 +45,7 @@ func init() {
 
 func GetAllUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	allUsers := getAllUsersFromDB()
+	allUsers := getFullFromDB()
 
 	json.NewEncoder(w).Encode(allUsers)
 }

@@ -21,3 +21,18 @@ type Profile struct {
 	Skills            []string           `json:"skills,omitempty"`
 	SocialLinks       []string           `json:"socialLinks,omitempty"`
 }
+
+type UserFull struct {
+	ID       primitive.ObjectID `json:"_id" bson:"_id"`
+	Name     string             `json:"name" bson:"name"`
+	Email    string             `json:"email" bson:"email"`
+	Password string             `json:"password" bson:"password"`
+	Profile  struct {
+		DateOfBirth       string   `json:"dateOfBirth" bson:"dateOfBirth"`
+		Major             string   `json:"major" bson:"major"`
+		Bio               string   `json:"bio" bson:"bio"`
+		AcademicInterests string   `json:"academicinterests" bson:"academicinterests"`
+		Skills            []string `json:"skills" bson:"skills"`
+		SocialLinks       []string `json:"sociallinks" bson:"sociallinks"`
+	} `json:"profile" bson:"profile"`
+}

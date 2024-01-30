@@ -26,16 +26,16 @@ func deleteOneUser(userId string) {
 	}
 }
 
-func getAllUsersFromDB() []models.User {
+func getFullFromDB() []models.UserFull {
 	cursor, err := collection.Find(context.Background(), bson.D{{}})
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer cursor.Close(context.Background())
 
-	var users []models.User
+	var users []models.UserFull
 	for cursor.Next(context.Background()) {
-		var user models.User
+		var user models.UserFull
 		if err = cursor.Decode(&user); err != nil {
 			log.Fatal(err)
 		}

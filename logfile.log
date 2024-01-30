@@ -31,3 +31,43 @@
 {"level":"fatal","msg":"server selection error: server selection timeout, current topology: { Type: ReplicaSetNoPrimary, Servers: [{ Addr: ac-brnrtty-shard-00-00.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: dial tcp 35.200.54.61:27017: i/o timeout }, { Addr: ac-brnrtty-shard-00-01.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: remote error: tls: internal error }, { Addr: ac-brnrtty-shard-00-02.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: remote error: tls: internal error }, ] }","time":"2024-01-30T19:51:02+06:00"}
 {"level":"info","msg":"MongoDB connection success","time":"2024-01-30T19:51:41+06:00"}
 {"level":"info","msg":"Logging initialized","time":"2024-01-30T19:51:41+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T00:34:25+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T00:34:25+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T00:46:10+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T00:46:10+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T00:54:42+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T00:54:42+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T00:56:24+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T00:56:24+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T01:09:53+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T01:09:53+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T01:26:46+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T01:26:46+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:26:56+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:26:56+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:26:56+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:26:56+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:26:56+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:26:56+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:26:56+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T01:27:50+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T01:27:50+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:27:56+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:27:56+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:27:56+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:27:56+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:27:56+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:27:56+06:00"}
+{"level":"info","msg":"Profile field not found or not in the expected format","time":"2024-01-31T01:27:56+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T01:35:41+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T01:35:41+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T01:42:05+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T01:42:05+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T01:51:42+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T01:51:42+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T01:57:22+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T01:57:22+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T01:59:45+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T01:59:45+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T02:33:17+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T02:33:17+06:00"}
