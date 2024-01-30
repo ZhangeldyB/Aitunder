@@ -72,7 +72,7 @@
                         alert("User with entered password already exist. Try to use another email.");
                         window.location.reload();
                     } else if (data.status === 200 && data.message === "Account created successfully") {
-                        window.location.href = "/home"; 
+                        window.location.href = "/profile"; 
                     } else {
                         console.error("Unexpected response:", data);
                     }

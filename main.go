@@ -6,11 +6,13 @@ import (
 	"io"
 	"net/http"
 	"os"
-
+	"golang.org/x/time/rate"
 	"github.com/sirupsen/logrus"
+	
 )
 
 var log = logrus.New()
+var limiter = rate.NewLimiter(3, 5) // Rate limit of 3 requests per second with a burst of 5 requests
 
 func init() {
 	// Create or open the log file
@@ -28,6 +30,16 @@ func init() {
 
 	log.Info("Logging initialized")
 }
+func handleWithRateLimit(handler http.HandlerFunc) http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        if !limiter.Allow() {
+            http.Error(w, "Rate limit exceeded", http.StatusTooManyRequests)
+            return
+        }
+        handler(w, r)
+    }
+}
+
 
 func pageHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
@@ -80,7 +92,7 @@ func main() {
 	http.HandleFunc("/api/test", testRequest)
 	http.HandleFunc("/api/profile/add", mongodb.AddUserProfile)
 	http.HandleFunc("/api/getAllUsers", mongodb.GetAllUsers)
-
+	http.HandleFunc("/main", handleWithRateLimit(pageHandler))
 	fmt.Println("Server is running on http://localhost:8080/main")
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
