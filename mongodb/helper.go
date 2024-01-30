@@ -54,3 +54,22 @@ func getOneUserByEmail(email string) (*models.User, error) {
 	}
 	return &user, nil
 }
+
+func addProfileToUser(userId string, profile models.Portfolio) error {
+	id, _ := primitive.ObjectIDFromHex(userId)
+
+	filter := bson.M{"_id": id}
+
+	update := bson.M{
+		"$set": bson.M{
+			"profile": profile,
+		},
+	}
+	_, err := collection.UpdateOne(context.Background(), filter, update)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("Added profile to user with ID: ", userId)
+	return nil
+}

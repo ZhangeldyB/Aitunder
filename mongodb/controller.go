@@ -34,6 +34,7 @@ func init() {
 func GetAllUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json") //x-www-form-urlencode
 	allUsers := getAllUsers()
+	
 	json.NewEncoder(w).Encode(allUsers)
 }
 
@@ -44,6 +45,14 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	_ = json.NewDecoder(r.Body).Decode(&user)
 	err := insertOneUser(user)
+
+	cookie := http.Cookie{
+		Name:  "sessionID",
+		Value: user.Id.Hex(),
+	}
+	http.SetCookie(w, &cookie)
+	fmt.Println("cookie created with id" + cookie.Value)
+
 	if err != nil {
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Email already used", "status": 400})
 		return
@@ -90,15 +99,62 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error checking user credentials")
 		return
 	}
+	cookie, err := r.Cookie("sessionID")
+	if err != nil {
+		cookie = &http.Cookie{
+			Name:  "sessionID",
+			Value: user.Id.Hex(),
+		}
+		http.SetCookie(w, cookie)
+		fmt.Println("cookie created with id" + cookie.Value)
+	}
+	if cookie.Value == user.Id.Hex() {
+		fmt.Println("Login successful cokies")
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Login successful", "status": 200})
+		return
+	} else {
+		cookie = &http.Cookie{
+			Name:  "sessionID",
+			Value: user.Id.Hex(),
+		}
+		http.SetCookie(w, cookie)
+		fmt.Println("cookie created with id" + cookie.Value)
+	}
 
 	if user != nil && user.Password == password {
 		fmt.Println("Login successful")
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Login successful", "status": 200})
-		http.Redirect(w, r, "/home", http.StatusFound)
 		return
 	} else {
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Wrong credentials", "status": 400})
 		fmt.Println("Invalid email or password")
 		return
 	}
+}
+
+func AddUserProfile(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Allow-Control-Allow-Methods", "POST")
+
+	cookie, err := r.Cookie("sessionID")
+	if err != nil {
+		fmt.Println("no cookie for id")
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "No Cookie for ID", "status": 400})
+	}
+
+	var profile models.Portfolio
+	err = json.NewDecoder(r.Body).Decode(&profile)
+	if err != nil {
+		http.Error(w, "Error decoding request body", http.StatusBadRequest)
+		fmt.Println("Error decoding request body")
+		return
+	}
+	err = addProfileToUser(cookie.Value, profile)
+	if err != nil {
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Error updating profile", "status": 500})
+		fmt.Println("Error updating user profile")
+		return
+	}
+	fmt.Println("Profile updated successfully")
+	json.NewEncoder(w).Encode(map[string]interface{}{"message": "Profile updated successfully", "status": 200})
 }
