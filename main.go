@@ -13,15 +13,20 @@ import (
 var log = logrus.New()
 
 func init() {
-	// Log as JSON instead of the default ASCII formatter.
-	log.SetFormatter(&logrus.JSONFormatter{})
-	// Output to a file in addition to stdout.
+	// Create or open the log file
 	file, err := os.OpenFile("logfile.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err == nil {
-		log.SetOutput(io.MultiWriter(os.Stdout, file))
+		// Set the logrus output to the file
+		log.SetOutput(file)
 	} else {
-		log.Info("Failed to log to file, using default stderr")
+		// If unable to open the log file, log to standard output
+		log.Warn("Failed to open log file. Logging to standard output.")
 	}
+
+	log.SetFormatter(&logrus.JSONFormatter{})
+	log.SetLevel(logrus.InfoLevel)
+
+	log.Info("Logging initialized")
 }
 
 func pageHandler(w http.ResponseWriter, r *http.Request) {
