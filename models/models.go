@@ -9,10 +9,10 @@ type User struct {
 	Name      string             `json:"name,omitempty"`
 	Email     string             `json:"email,omitempty"`
 	Password  string             `json:"password,omitempty"`
-	Portfolio Portfolio          `json:"portfolio,omitempty"`
+	Portfolio Profile            `json:"portfolio,omitempty"`
 }
 
-type Portfolio struct {
+type Profile struct {
 	UserID            primitive.ObjectID `json:"userId,omitempty" bson:"userId,omitempty"`
 	DateOfBirth       string             `json:"dateOfBirth,omitempty" bson:"dateOfBirth,omitempty"`
 	Major             string             `json:"major,omitempty"`
