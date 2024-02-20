@@ -124,7 +124,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		log.Info("login with cookies")
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Login successful", "status": 200})
 		return
-	} else {
+	} else if user.Id.Hex() != "" {
 		cookie = &http.Cookie{
 			Name:  "sessionID",
 			Value: user.Id.Hex(),

@@ -65,7 +65,7 @@
                     <tbody id="tableBodyUsers">
                     </tbody>
                 </table>
-             <nav aria-label="Page navigation">
+                <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-end" id="paginationUsers">
                     </ul>
                 </nav> 
@@ -111,13 +111,13 @@
     <script>
         $(document).ready(function () {
             let users;
-    
+
             function fetchAllUsersWithPortfolio() {
                 $.ajax({
                     url: '/api/getAllUsers',
                     method: 'GET',
                     success: function (data) {
-                        users = data; // Update the users variable
+                        users = data;
                         renderUsersTable();
                     },
                     error: function (error) {
@@ -125,19 +125,19 @@
                     }
                 });
             }
-    
+
             fetchAllUsersWithPortfolio();
-    
+
             function renderUsersTable() {
                 $('#tableBodyUsers').empty();
                 const filterByMajor = $('#filterByMajor').val();
                 const sortOption = $('#sortUsers').val();
-    
+
                 let filteredUsers = users.filter(user => {
                     const profile = user.profile || {};
                     return filterByMajor === 'none' || profile.major === filterByMajor;
                 });
-    
+
                 if (sortOption === 'name') {
                     filteredUsers.sort((a, b) => a.name.localeCompare(b.name));
                 } else if (sortOption === 'email') {
@@ -145,10 +145,18 @@
                 } else if (sortOption === 'dob') {
                     filteredUsers.sort((a, b) => (a.profile && b.profile) ? a.profile.dateOfBirth.localeCompare(b.profile.dateOfBirth) : 0);
                 }
-    
-                filteredUsers.forEach(user => {
+
+                const pageSize = 5;
+                const totalPages = Math.ceil(filteredUsers.length / pageSize);
+                const currentPage = 1;
+
+                const startIndex = (currentPage - 1) * pageSize;
+                const endIndex = startIndex + pageSize;
+                const currentPageUsers = filteredUsers.slice(startIndex, endIndex);
+
+                currentPageUsers.forEach(user => {
                     const profile = user.profile || {};
-    
+
                     $('#tableBodyUsers').append(`
                         <tr>
                             <td>${user.name}</td>
@@ -163,8 +171,39 @@
                         </tr>
                     `);
                 });
+
+                renderPagination('#paginationUsers', currentPage, totalPages);
             }
-    
+
+            function renderPagination(containerId, currentPage, totalPages) {
+                const paginationContainer = $(containerId);
+                paginationContainer.empty();
+
+                paginationContainer.append(`
+                    <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                        <a class="page-link" onclick="changePage(${currentPage - 1})">Previous</a>
+                    </li>
+                `);
+
+                for (let page = 1; page <= totalPages; page++) {
+                    paginationContainer.append(`
+                        <li class="page-item ${currentPage === page ? 'active' : ''}">
+                            <a class="page-link" onclick="changePage(${page})">${page}</a>
+                        </li>
+                    `);
+                }
+
+                paginationContainer.append(`
+                    <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                        <a class="page-link" onclick="changePage(${currentPage + 1})">Next</a>
+                    </li>
+                `);
+            }
+
+            function changePage(newPage) {
+                renderUsersTable();
+            }
+
             $('#filterByMajor, #sortUsers').change(function () {
                 renderUsersTable();
             });
@@ -173,4 +212,3 @@
     
 </body>
 </html>
-

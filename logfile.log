@@ -71,3 +71,40 @@
 {"level":"info","msg":"Logging initialized","time":"2024-01-31T01:59:45+06:00"}
 {"level":"info","msg":"MongoDB connection success","time":"2024-01-31T02:33:17+06:00"}
 {"level":"info","msg":"Logging initialized","time":"2024-01-31T02:33:17+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T19:24:43+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T19:24:43+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T19:39:18+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T19:39:18+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-01-31T19:52:17+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-01-31T19:52:17+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-02-16T15:51:16+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-02-16T15:51:16+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-02-16T23:25:59+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-02-16T23:25:59+06:00"}
+{"level":"fatal","msg":"server selection error: server selection timeout, current topology: { Type: ReplicaSetNoPrimary, Servers: [{ Addr: ac-brnrtty-shard-00-01.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: read tcp 192.168.0.171:56085-\u003e34.84.249.93:27017: wsarecv: An existing connection was forcibly closed by the remote host. }, { Addr: ac-brnrtty-shard-00-00.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: remote error: tls: internal error }, { Addr: ac-brnrtty-shard-00-02.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: remote error: tls: internal error }, ] }","time":"2024-02-16T23:27:09+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-02-16T23:27:35+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-02-16T23:27:35+06:00"}
+{"level":"fatal","msg":"server selection error: server selection timeout, current topology: { Type: ReplicaSetNoPrimary, Servers: [{ Addr: ac-brnrtty-shard-00-02.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: remote error: tls: internal error }, { Addr: ac-brnrtty-shard-00-00.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: remote error: tls: internal error }, { Addr: ac-brnrtty-shard-00-01.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: remote error: tls: internal error }, ] }","time":"2024-02-16T23:28:06+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-02-16T23:30:42+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-02-16T23:30:42+06:00"}
+{"level":"fatal","msg":"server selection error: server selection timeout, current topology: { Type: ReplicaSetNoPrimary, Servers: [{ Addr: ac-brnrtty-shard-00-02.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: read tcp 192.168.0.171:56609-\u003e35.194.97.41:27017: wsarecv: An existing connection was forcibly closed by the remote host. }, { Addr: ac-brnrtty-shard-00-01.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: read tcp 192.168.0.171:56611-\u003e34.84.249.93:27017: wsarecv: An existing connection was forcibly closed by the remote host. }, { Addr: ac-brnrtty-shard-00-00.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: read tcp 192.168.0.171:56610-\u003e35.200.54.61:27017: wsarecv: An existing connection was forcibly closed by the remote host. }, ] }","time":"2024-02-16T23:31:18+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-02-16T23:31:27+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-02-16T23:31:27+06:00"}
+{"level":"fatal","msg":"server selection error: server selection timeout, current topology: { Type: ReplicaSetNoPrimary, Servers: [{ Addr: ac-brnrtty-shard-00-02.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: read tcp 192.168.0.171:56788-\u003e35.194.97.41:27017: wsarecv: An existing connection was forcibly closed by the remote host. }, { Addr: ac-brnrtty-shard-00-01.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: read tcp 192.168.0.171:56786-\u003e34.84.249.93:27017: wsarecv: An existing connection was forcibly closed by the remote host. }, { Addr: ac-brnrtty-shard-00-00.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: remote error: tls: internal error }, ] }","time":"2024-02-16T23:31:59+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-02-16T23:32:54+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-02-16T23:32:54+06:00"}
+{"level":"fatal","msg":"server selection error: server selection timeout, current topology: { Type: ReplicaSetNoPrimary, Servers: [{ Addr: ac-brnrtty-shard-00-02.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: read tcp 192.168.0.171:56983-\u003e35.194.97.41:27017: wsarecv: An existing connection was forcibly closed by the remote host. }, { Addr: ac-brnrtty-shard-00-01.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: remote error: tls: internal error }, { Addr: ac-brnrtty-shard-00-00.bkn7epv.mongodb.net:27017, Type: Unknown, Last error: read tcp 192.168.0.171:56982-\u003e35.200.54.61:27017: wsarecv: An existing connection was forcibly closed by the remote host. }, ] }","time":"2024-02-16T23:33:27+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-02-20T18:18:02+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-02-20T18:18:02+06:00"}
+{"level":"error","msg":"listen tcp 192.168.99.216:8080: bind: The requested address is not valid in its context.","time":"2024-02-20T18:18:02+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-02-20T18:19:45+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-02-20T18:19:45+06:00"}
+{"level":"error","msg":"Error checking user credentials","time":"2024-02-20T18:22:29+06:00"}
+{"level":"error","msg":"Error checking user credentials","time":"2024-02-20T18:22:39+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-02-20T18:23:28+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-02-20T18:23:29+06:00"}
+{"level":"error","msg":"Error checking user credentials","time":"2024-02-20T18:24:16+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-02-20T18:24:39+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-02-20T18:24:39+06:00"}
+{"level":"info","msg":"New session with id6597217129085210bebf4404","time":"2024-02-20T18:27:46+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-02-20T18:27:46+06:00"}

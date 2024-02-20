@@ -17,14 +17,14 @@ func insertOneUser(user models.User) error {
 	return nil
 }
 
-func deleteOneUser(userId string) {
-	id, _ := primitive.ObjectIDFromHex(userId)
-	filter := bson.M{"_id": id}
-	_, err := collection.DeleteOne(context.Background(), filter)
-	if err != nil {
-		// log.Fatal(err)
-	}
-}
+// func deleteOneUser(userId string) {
+// 	id, _ := primitive.ObjectIDFromHex(userId)
+// 	filter := bson.M{"_id": id}
+// 	_, err := collection.DeleteOne(context.Background(), filter)
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// }
 
 func getFullFromDB() []models.UserFull {
 	cursor, err := collection.Find(context.Background(), bson.D{{}})

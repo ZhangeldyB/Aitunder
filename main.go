@@ -79,7 +79,7 @@ func testRequest(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/main", pageHandler)
+	// http.HandleFunc("/main", pageHandler)
 	http.HandleFunc("/login", pageHandler)
 	http.HandleFunc("/home", pageHandler)
 	http.HandleFunc("/admin", pageHandler)
@@ -89,9 +89,9 @@ func main() {
 	http.HandleFunc("/api/test", testRequest)
 	http.HandleFunc("/api/profile/add", mongodb.AddUserProfile)
 	http.HandleFunc("/api/getAllUsers", mongodb.GetAllUsers)
-	// http.HandleFunc("/main", handleWithRateLimit(pageHandler))
+	http.HandleFunc("/main", handleWithRateLimit(pageHandler))
 	fmt.Println("Server is running on http://localhost:8080/main")
-	err := http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe("192.168.99.215:8080", nil)
 	if err != nil {
 		log.Error(err)
 	}
