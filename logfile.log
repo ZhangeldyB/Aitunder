@@ -1,69 +1,10 @@
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T17:15:11+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T17:15:11+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T17:16:06+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T17:16:06+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:33:31+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:33:31+05:00"}
-{"level":"error","msg":"Unauthorized access","time":"2024-03-02T21:33:37+05:00"}
-{"level":"error","msg":"Unauthorized access","time":"2024-03-02T21:33:38+05:00"}
-{"level":"error","msg":"Unauthorized access","time":"2024-03-02T21:33:38+05:00"}
-{"level":"info","msg":"New session with id65e1c7feeaa0bed10c23e86b","time":"2024-03-02T21:33:57+05:00"}
-{"level":"info","msg":"login with cookies","time":"2024-03-02T21:33:57+05:00"}
-{"level":"error","msg":"Error rendering card-user template","time":"2024-03-02T21:34:02+05:00"}
-{"level":"error","msg":"Error rendering card-user template","time":"2024-03-02T21:41:13+05:00"}
-{"level":"error","msg":"Error rendering card-user template","time":"2024-03-02T21:41:16+05:00"}
-{"level":"error","msg":"Error rendering card-user template","time":"2024-03-02T21:41:25+05:00"}
-{"level":"error","msg":"Error rendering card-user template","time":"2024-03-02T21:42:16+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:42:22+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:42:22+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:43:36+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:43:36+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:45:49+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:45:49+05:00"}
-{"level":"error","msg":"error in aggregation (BadValue) $nin needs an array","time":"2024-03-02T21:45:55+05:00"}
-{"level":"error","msg":"Error retrieving user profile(BadValue) $nin needs an array","time":"2024-03-02T21:45:55+05:00"}
-{"level":"error","msg":"error in aggregation (BadValue) $nin needs an array","time":"2024-03-02T21:45:56+05:00"}
-{"level":"error","msg":"Error retrieving user profile(BadValue) $nin needs an array","time":"2024-03-02T21:45:56+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:47:23+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:47:23+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:50:33+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:50:33+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:56:54+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:56:54+05:00"}
-{"level":"error","msg":"Error checking user credentials","time":"2024-03-02T21:57:33+05:00"}
-{"level":"error","msg":"Error checking user credentials","time":"2024-03-02T21:57:46+05:00"}
-{"level":"info","msg":"login Admin","time":"2024-03-02T21:57:57+05:00"}
-{"level":"error","msg":"Error checking user credentials","time":"2024-03-02T21:57:57+05:00"}
-{"level":"info","msg":"login Admin","time":"2024-03-02T21:57:59+05:00"}
-{"level":"error","msg":"Error checking user credentials","time":"2024-03-02T21:57:59+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:59:05+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:59:05+05:00"}
-{"level":"info","msg":"New session with id 6597217129085210bebf4404","time":"2024-03-02T21:59:17+05:00"}
-{"level":"info","msg":"Login successful","time":"2024-03-02T21:59:17+05:00"}
-{"level":"info","msg":"login Admin","time":"2024-03-02T21:59:45+05:00"}
-{"level":"error","msg":"Error checking user credentials","time":"2024-03-02T21:59:45+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T22:01:21+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T22:01:21+05:00"}
-{"level":"info","msg":"login Admin","time":"2024-03-02T22:01:43+05:00"}
-{"level":"error","msg":"Error checking user credentials","time":"2024-03-02T22:01:45+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T22:01:49+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T22:01:49+05:00"}
-{"level":"info","msg":"login Admin","time":"2024-03-02T22:01:55+05:00"}
-{"level":"error","msg":"Error checking user credentials","time":"2024-03-02T22:01:57+05:00"}
-{"level":"info","msg":"login Admin","time":"2024-03-02T22:02:08+05:00"}
-{"level":"error","msg":"Error checking user credentials","time":"2024-03-02T22:02:09+05:00"}
-{"level":"info","msg":"login Admin","time":"2024-03-02T22:02:59+05:00"}
-{"level":"error","msg":"Error checking user credentials","time":"2024-03-02T22:02:59+05:00"}
-{"level":"info","msg":"login Admin","time":"2024-03-02T22:03:15+05:00"}
-{"level":"error","msg":"Error checking user credentials","time":"2024-03-02T22:03:15+05:00"}
-{"level":"warning","msg":"error parsing uri: lookup _mongodb._tcp.aitunder.bkn7epv.mongodb.net: dnsquery: This operation returned because the timeout period expired.","time":"2024-03-02T22:10:07+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T22:10:07+05:00"}
-{"level":"info","msg":"login Admin","time":"2024-03-02T22:16:38+05:00"}
-{"level":"info","msg":"login Admin","time":"2024-03-02T22:20:57+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T22:21:58+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-02T22:21:58+05:00"}
-{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T01:41:30+05:00"}
-{"level":"info","msg":"Logging initialized","time":"2024-03-03T01:41:30+05:00"}
-{"level":"info","msg":"login with cookies","time":"2024-03-03T01:42:05+05:00"}
-{"level":"info","msg":"New session with id 65e37c7eb9a58a09df88ffc6","time":"2024-03-03T01:42:26+05:00"}
-{"level":"info","msg":"Login successful","time":"2024-03-03T01:42:26+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T02:01:25+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T02:01:25+05:00"}
+{"level":"info","msg":"New session with id 6597217129085210bebf4404","time":"2024-03-03T02:01:55+05:00"}
+{"level":"info","msg":"Login successful","time":"2024-03-03T02:01:55+05:00"}
+{"level":"info","msg":"New session with id 65e37c7eb9a58a09df88ffc6","time":"2024-03-03T02:02:06+05:00"}
+{"level":"info","msg":"Login successful","time":"2024-03-03T02:02:06+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T02:03:22+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T02:03:22+05:00"}
+{"level":"info","msg":"New session with id 65e1c7feeaa0bed10c23e86b","time":"2024-03-03T02:03:29+05:00"}
+{"level":"info","msg":"Login successful","time":"2024-03-03T02:03:29+05:00"}

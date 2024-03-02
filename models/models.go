@@ -1,16 +1,15 @@
 package models
 
-import (
-	"go.mongodb.org/mongo-driver/bson/primitive"
-)
+import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type User struct {
-	Id          primitive.ObjectID   `json:"_id,omitempty" bson:"_id,omitempty"`
-	Name        string               `json:"name,omitempty"`
-	Email       string               `json:"email,omitempty"`
-	Password    string               `json:"password,omitempty"`
-	Portfolio   Profile              `json:"portfolio,omitempty"`
-	ViewedUsers []primitive.ObjectID `json:"viewedUsers,omitempty" bson:"viewedUsers,omitempty"`
+	Id               primitive.ObjectID   `json:"_id,omitempty" bson:"_id,omitempty"`
+	Name             string               `json:"name,omitempty"`
+	Email            string               `json:"email,omitempty"`
+	Password         string               `json:"password,omitempty"`
+	Profile          Profile              `json:"profile,omitempty"`
+	AccountActivated bool                 `json:"accountActivated,omitempty" bson:"accountActivated,omitempty"`
+	ViewedUsers      []primitive.ObjectID `json:"viewedUsers,omitempty" bson:"viewedUsers,omitempty"`
 }
 
 type Profile struct {
@@ -24,11 +23,10 @@ type Profile struct {
 }
 
 type UserFull struct {
-	ID       primitive.ObjectID `json:"_id" bson:"_id"`
-	Name     string             `json:"name" bson:"name"`
-	Email    string             `json:"email" bson:"email"`
-	Password string             `json:"password" bson:"password"`
-	Profile  struct {
+	ID      primitive.ObjectID `json:"_id" bson:"_id"`
+	Name    string             `json:"name" bson:"name"`
+	Email   string             `json:"email" bson:"email"`
+	Profile struct {
 		DateOfBirth       string   `json:"dateOfBirth" bson:"dateOfBirth"`
 		Major             string   `json:"major" bson:"major"`
 		Bio               string   `json:"bio" bson:"bio"`
