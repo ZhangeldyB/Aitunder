@@ -146,3 +146,23 @@ func updateOneUserByID(userID string) error {
 
 	return nil
 }
+
+func getAllAuthorizedUsers() ([]models.User, error) {
+	filter := bson.M{"accountActivated": true} // Assuming accountActivated field determines authorization
+	cursor, err := collection.Find(context.Background(), filter)
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(context.Background())
+
+	var users []models.User
+	for cursor.Next(context.Background()) {
+		var user models.User
+		if err := cursor.Decode(&user); err != nil {
+			return nil, err
+		}
+		users = append(users, user)
+	}
+
+	return users, nil
+}

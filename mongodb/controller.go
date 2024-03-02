@@ -150,6 +150,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		http.SetCookie(w, cookie)
 		log.Info("New session with id" + cookie.Value)
 	}
+	fmt.Println(user.Id, cookie.Value)
 	if cookie.Value == user.Id.Hex() {
 		log.Info("login with cookies")
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Login successful", "status": 200})
@@ -192,6 +193,7 @@ func ServeProfile(w http.ResponseWriter, r *http.Request) {
 		log.Error("Error retrieving users profiles ", err)
 		return
 	}
+	fmt.Println(cookie.Value)
 
 	err = profileTemplate.Execute(w, user)
 	if err != nil {
@@ -278,4 +280,59 @@ func VerifyAccount(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	http.Redirect(w, r, "/profile", http.StatusFound)
+}
+
+func SendNotificationToUsers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	// Read the notification message from the request body
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, "Error reading request body", http.StatusInternalServerError)
+		log.Error("Error reading request body")
+		return
+	}
+	defer r.Body.Close()
+
+	// Convert the message to string
+	notificationMessage := string(body)
+
+	// Get all authorized users from the database
+	authorizedUsers, err := getAllAuthorizedUsers()
+	if err != nil {
+		http.Error(w, "Error getting authorized users", http.StatusInternalServerError)
+		log.Error("Error getting authorized users from the database")
+		return
+	}
+
+	// Send notification email to each authorized user
+	for _, user := range authorizedUsers {
+		err := sendNotificationEmail(user.Email, notificationMessage)
+		if err != nil {
+			log.Error("Failed to send notification email to user:", user.Email)
+			continue // Continue sending notification to other users even if one fails
+		}
+	}
+
+	// Respond with success message
+	json.NewEncoder(w).Encode(map[string]interface{}{"message": "Notification sent to all authorized users", "status": 200})
+}
+
+func sendNotificationEmail(email, message string) error {
+	// Create a new email message
+	mailer := gomail.NewMessage()
+	mailer.SetHeader("From", "aitunderapp.notifications@gmail.com")
+	mailer.SetHeader("To", email)
+	mailer.SetHeader("Subject", "Notification")
+	mailer.SetBody("text/plain", message)
+
+	// Create a dialer to establish connection with SMTP server
+	dialer := gomail.NewDialer("smtp.gmail.com", 587, "aitunderapp.notifications@gmail.com", "hbgr gnxq enfr zmtn")
+
+	// Send the email
+	if err := dialer.DialAndSend(mailer); err != nil {
+		return err
+	}
+
+	return nil
 }

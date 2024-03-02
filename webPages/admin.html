@@ -19,6 +19,9 @@
             <li class="nav-item">
                 <a class="nav-link" id="projects-tab" data-toggle="tab" href="#projects" role="tab" aria-controls="projects" aria-selected="false">Projects</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="mailservice-tab" data-toggle="tab" href="#mailservice" role="tab" aria-controls="mail service" aria-selected="false">Mail Service</a>
+            </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <!-- Users Tab -->
@@ -102,6 +105,16 @@
                     <ul class="pagination justify-content-end" id="paginationProjects">
                     </ul>
                 </nav>
+            </div> 
+
+             <!-- Mail Service Tab -->
+            <div class="tab-pane fade" id="mailservice" role="tabpanel" aria-labelledby="mailservice-tab">
+                <h1>Mail Service</h1>
+                <div class="form-group">
+                    <label for="notificationText">Notification Text</label>
+                    <textarea class="form-control" id="notificationText" rows="3"></textarea>
+                </div>
+                <button id="sendNotificationBtn" class="btn btn-primary">Send Notification</button>
             </div> 
         </div>
     </div>
@@ -208,6 +221,38 @@
                 renderUsersTable();
             });
         });
+
+
+
+        $(document).ready(function () {
+    $('#sendNotificationBtn').click(function () {
+        const notificationText = $('#notificationText').val();
+
+        // Validate notification text
+        if (notificationText.trim() === '') {
+            alert('Please enter a notification message.');
+            return;
+        }
+
+        // Send notification message to backend
+        $.ajax({
+            url: '/api/sendNotification',
+            method: 'POST',
+            contentType: 'application/json',
+            data: notificationText,
+            success: function (response) {
+                alert('Notification sent successfully.');
+                $('#notificationText').val('');
+            },
+            error: function (error) {
+                console.error('Error sending notification:', error);
+                alert('Failed to send notification. Please try again later.');
+            }
+        });
+    });
+});
+
+
     </script>
     
 </body>

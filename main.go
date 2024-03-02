@@ -86,6 +86,7 @@ func main() {
 	http.HandleFunc("/api/test", testRequest)
 	http.HandleFunc("/api/signUp", mongodb.AddUser)
 	http.HandleFunc("/api/login", mongodb.LoginHandler)
+	http.HandleFunc("/api/sendNotification", mongodb.SendNotificationToUsers)
 	http.HandleFunc("/card/Co-Worker", mongodb.ServerCardUsers)
 	// http.HandleFunc("/card/Project", mongodb.ServeCardProjects)
 	http.HandleFunc("/home", mongodb.ServeProfile)
