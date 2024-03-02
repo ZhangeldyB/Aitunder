@@ -89,6 +89,7 @@ func main() {
 	http.HandleFunc("/api/test", testRequest)
 	http.HandleFunc("/api/profile/add", mongodb.AddUserProfile)
 	http.HandleFunc("/api/getAllUsers", mongodb.GetAllUsers)
+	http.HandleFunc("/verify", mongodb.VerifyAccount)
 	http.HandleFunc("/main", handleWithRateLimit(pageHandler))
 	http.Handle("/", http.FileServer(http.Dir("webPages/")))
 	fmt.Println("Server is running on http://localhost:8080/main")

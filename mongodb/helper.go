@@ -91,3 +91,25 @@ func addProfileToUser(userId string, profile models.Profile) error {
 	log.Info("Added profile to user with ID: ", userId)
 	return nil
 }
+
+func updateOneUserByID(userID string) error {
+	id, err := primitive.ObjectIDFromHex(userID)
+	if err != nil {
+		return err
+	}
+
+	filter := bson.M{"_id": id}
+
+	update := bson.M{
+		"$set": bson.M{
+			"accountActivated": true,
+		},
+	}
+
+	_, err = collection.UpdateOne(context.Background(), filter, update)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

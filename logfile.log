@@ -1,0 +1,119 @@
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T13:56:23+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T13:56:23+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T17:15:20+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T17:15:20+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T17:20:33+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T17:20:33+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T17:36:48+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T17:36:48+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T18:04:46+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T18:04:46+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T18:21:37+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T18:21:37+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T18:29:17+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T18:29:18+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T18:33:32+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T18:33:32+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T18:51:05+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T18:51:05+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T19:07:22+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T19:07:22+06:00"}
+{"level":"info","msg":"Generated verification token: e503e26ac8eb1148937a36a62e7c3193852d88d3dabdfb3cec54acfb15980ebe","time":"2024-03-02T19:07:43+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T20:24:14+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T20:24:14+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:32:24+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:32:24+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:39:57+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:39:57+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:44:59+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:44:59+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:48:09+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:48:09+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T21:58:37+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T21:58:37+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T22:02:46+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T22:02:46+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T22:05:39+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T22:05:39+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T22:09:04+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T22:09:04+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T23:11:31+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T23:11:31+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T23:55:06+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T23:55:06+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-02T23:58:19+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-02T23:58:19+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T00:23:46+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T00:23:46+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T00:26:02+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T00:26:02+06:00"}
+{"level":"info","msg":"New session with id6597217129085210bebf4404","time":"2024-03-03T00:26:20+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T00:26:20+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T00:41:35+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T00:41:35+06:00"}
+{"level":"info","msg":"inserted one user in database with id:ObjectID(\"65e372f03932c911336e1017\")","time":"2024-03-03T00:41:53+06:00"}
+{"level":"info","msg":"cookie created with id65e372f03932c911336e1017","time":"2024-03-03T00:41:53+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T01:00:52+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T01:00:52+06:00"}
+{"level":"info","msg":"inserted one user in database with id:ObjectID(\"65e3777d48d1abdd3218f504\")","time":"2024-03-03T01:01:19+06:00"}
+{"level":"info","msg":"cookie created with id65e3777d48d1abdd3218f504","time":"2024-03-03T01:01:19+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T01:14:06+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T01:14:06+06:00"}
+{"level":"info","msg":"inserted one user in database with id:ObjectID(\"65e37a9ea3ab1e0e394f1c0c\")","time":"2024-03-03T01:14:40+06:00"}
+{"level":"info","msg":"cookie created with id65e37a9ea3ab1e0e394f1c0c","time":"2024-03-03T01:14:40+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T01:19:59+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T01:19:59+06:00"}
+{"level":"info","msg":"inserted one user in database with id:ObjectID(\"65e37c03e7156e1b524c9ad8\")","time":"2024-03-03T01:20:36+06:00"}
+{"level":"info","msg":"cookie created with id65e37c03e7156e1b524c9ad8","time":"2024-03-03T01:20:36+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T01:22:38+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T01:22:38+06:00"}
+{"level":"info","msg":"inserted one user in database with id:ObjectID(\"65e37c7eb9a58a09df88ffc6\")","time":"2024-03-03T01:22:41+06:00"}
+{"level":"info","msg":"cookie created with id65e37c7eb9a58a09df88ffc6","time":"2024-03-03T01:22:41+06:00"}
+{"level":"info","msg":"Added profile to user with ID: 65e37c7eb9a58a09df88ffc6","time":"2024-03-03T01:27:32+06:00"}
+{"level":"info","msg":"Profile updated for id65e37c7eb9a58a09df88ffc6","time":"2024-03-03T01:27:32+06:00"}
+{"level":"info","msg":"Added profile to user with ID: 65e37c7eb9a58a09df88ffc6","time":"2024-03-03T01:27:36+06:00"}
+{"level":"info","msg":"Profile updated for id65e37c7eb9a58a09df88ffc6","time":"2024-03-03T01:27:36+06:00"}
+{"level":"info","msg":"Added profile to user with ID: 65e37c7eb9a58a09df88ffc6","time":"2024-03-03T01:29:50+06:00"}
+{"level":"info","msg":"Profile updated for id65e37c7eb9a58a09df88ffc6","time":"2024-03-03T01:29:50+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T01:30:28+06:00"}
+{"level":"error","msg":"Unauthorized access","time":"2024-03-03T01:31:22+06:00"}
+{"level":"error","msg":"Unauthorized access","time":"2024-03-03T01:31:23+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T01:31:39+06:00"}
+{"level":"error","msg":"Unauthorized access","time":"2024-03-03T01:31:39+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T01:34:17+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T01:34:17+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T01:34:35+06:00"}
+{"level":"error","msg":"Unauthorized access","time":"2024-03-03T01:34:35+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T01:36:59+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T01:36:59+06:00"}
+{"level":"info","msg":"New session with id 6597217129085210bebf4404","time":"2024-03-03T01:39:43+06:00"}
+{"level":"info","msg":"Login successful","time":"2024-03-03T01:39:43+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T01:39:52+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T01:40:05+06:00"}
+{"level":"error","msg":"Unauthorized access","time":"2024-03-03T01:40:05+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T01:40:11+06:00"}
+{"level":"error","msg":"Unauthorized access","time":"2024-03-03T01:40:11+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T01:41:08+06:00"}
+{"level":"error","msg":"Unauthorized access","time":"2024-03-03T01:41:08+06:00"}
+{"level":"error","msg":"Unauthorized access","time":"2024-03-03T01:41:12+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T01:41:20+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T01:41:20+06:00"}
+{"level":"info","msg":"New session with id 6597217129085210bebf4404","time":"2024-03-03T01:44:18+06:00"}
+{"level":"error","msg":"Invalid email or password","time":"2024-03-03T01:44:18+06:00"}
+{"level":"info","msg":"New session with id 6597217129085210bebf4404","time":"2024-03-03T01:44:29+06:00"}
+{"level":"info","msg":"Login successful","time":"2024-03-03T01:44:29+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T01:44:49+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T01:46:16+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T01:46:16+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T01:46:47+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T01:46:47+06:00"}
+{"level":"error","msg":"Unauthorized access","time":"2024-03-03T01:47:13+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T01:47:28+06:00"}
+{"level":"error","msg":"Unauthorized access","time":"2024-03-03T01:47:28+06:00"}
+{"level":"error","msg":"Unauthorized access","time":"2024-03-03T01:47:30+06:00"}
+{"level":"error","msg":"Unauthorized access","time":"2024-03-03T01:47:31+06:00"}
+{"level":"info","msg":"New session with id 6597217129085210bebf4404","time":"2024-03-03T01:47:43+06:00"}
+{"level":"info","msg":"Login successful","time":"2024-03-03T01:47:43+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T01:47:53+06:00"}
+{"level":"info","msg":"New session with id 6597217129085210bebf4404","time":"2024-03-03T01:48:32+06:00"}
+{"level":"info","msg":"Login successful","time":"2024-03-03T01:48:32+06:00"}

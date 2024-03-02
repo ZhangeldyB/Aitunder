@@ -4,6 +4,7 @@ import (
 	"Aitunder/models"
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -12,6 +13,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"gopkg.in/gomail.v2"
 )
 
 var log = logrus.New()
@@ -41,7 +43,6 @@ func init() {
 	log.Info("MongoDB connection success")
 
 	collection = client.Database(dbName).Collection(colName)
-
 }
 
 func GetAllUsers(w http.ResponseWriter, r *http.Request) {
@@ -76,7 +77,16 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 		http.SetCookie(w, cookie)
 	}
 	log.Info("cookie created with id" + cookie.Value)
-	json.NewEncoder(w).Encode(map[string]interface{}{"message": "Account created successfully", "status": 200})
+
+	err = sendVerificationEmail(user.Email, id)
+	if err != nil {
+		http.Error(w, "Failed to send verification email", http.StatusInternalServerError)
+		log.Error("Failed to send verification email")
+		return
+	} else {
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "User registered successfully. Please verify your email.", "status": 200})
+	}
+
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
@@ -118,22 +128,29 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		log.Error("Error checking user credentials")
 		return
 	}
+
+	if !user.AccountActivated {
+		http.Error(w, "Account not activated. Please verify your email.", http.StatusUnauthorized)
+		return
+	}
+
 	cookie, err := r.Cookie("sessionID")
 	if err != nil {
 		cookie = &http.Cookie{
 			Name:  "sessionID",
-			Value: user.Id.Hex(),
+			Value: user.ID.Hex(),
 			Path:  "/",
 		}
 		http.SetCookie(w, cookie)
 		log.Info("New session with id" + cookie.Value)
 	}
-	if cookie.Value == user.Id.Hex() {
+	fmt.Println(cookie.Value, user.ID)
+	if cookie.Value == user.ID.Hex() {
 		log.Info("login with cookies")
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Login successful", "status": 200})
 		return
-	} else if user.Id.Hex() != "" {
-		cookie.Value = user.Id.Hex()
+	} else if user.ID.Hex() != "" {
+		cookie.Value = user.ID.Hex()
 		cookie.Path = "/"
 		http.SetCookie(w, cookie)
 
@@ -194,10 +211,40 @@ func AddUserProfile(w http.ResponseWriter, r *http.Request) {
 	}
 	err = addProfileToUser(cookie.Value, profile)
 	if err != nil {
-		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Error updating profile", "status": 500})
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Error updating profile", "status": 400})
 		log.Error("Error updating user profile")
 		return
 	}
-	log.Info("Profile updated for id" + cookie.Value)
+	log.Info("Profile updated for id " + cookie.Value)
 	json.NewEncoder(w).Encode(map[string]interface{}{"message": "Profile updated successfully", "status": 200})
+}
+
+func sendVerificationEmail(email, userID string) error {
+	mailer := gomail.NewMessage()
+	mailer.SetHeader("From", "aitunderapp.notifications@gmail.com")
+	mailer.SetHeader("To", email)
+	mailer.SetHeader("Subject", "Account Verification")
+	mailer.SetBody("text/html", fmt.Sprintf("Please click the following link to verify your account: <a href='http://localhost:8080/verify?userID=%s'>Verify</a>", userID))
+	dialer := gomail.NewDialer("smtp.gmail.com", 587, "aitunderapp.notifications@gmail.com", "hbgr gnxq enfr zmtn")
+	if err := dialer.DialAndSend(mailer); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func VerifyAccount(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html")
+
+	userID := r.URL.Query().Get("userID")
+	if userID == "" {
+		log.Error("User ID not provided")
+		http.Error(w, "User ID not provided", http.StatusBadRequest)
+		return
+	}
+	if err := updateOneUserByID(userID); err != nil {
+		http.Error(w, "Failed to verify account", http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, "/profile", http.StatusFound)
 }
