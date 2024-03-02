@@ -5,11 +5,12 @@ import (
 )
 
 type User struct {
-	Id        primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
-	Name      string             `json:"name,omitempty"`
-	Email     string             `json:"email,omitempty"`
-	Password  string             `json:"password,omitempty"`
-	Portfolio Profile            `json:"portfolio,omitempty"`
+	Id          primitive.ObjectID   `json:"_id,omitempty" bson:"_id,omitempty"`
+	Name        string               `json:"name,omitempty"`
+	Email       string               `json:"email,omitempty"`
+	Password    string               `json:"password,omitempty"`
+	Portfolio   Profile              `json:"portfolio,omitempty"`
+	ViewedUsers []primitive.ObjectID `json:"viewedUsers,omitempty" bson:"viewedUsers,omitempty"`
 }
 
 type Profile struct {
@@ -35,4 +36,5 @@ type UserFull struct {
 		Skills            []string `json:"skills" bson:"skills"`
 		SocialLinks       []string `json:"sociallinks" bson:"sociallinks"`
 	} `json:"profile" bson:"profile"`
+	ViewedUsers []primitive.ObjectID `json:"viewedUsers,omitempty" bson:"viewedUsers,omitempty"`
 }

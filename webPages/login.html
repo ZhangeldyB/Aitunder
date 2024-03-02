@@ -69,7 +69,7 @@
                     }else if (data.status === 200 && data.message === 'Login successful') {
                         window.location.href = '/home'; 
                     } else {
-                        console.error('Unexpected response:', data);s
+                        console.error('Unexpected response:', data);
                     }
                 }).catch(error => console.error('Error:', error));
             });

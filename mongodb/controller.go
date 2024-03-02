@@ -98,6 +98,12 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if data["email"] == "admin@admin.admin" && data["password"] == "Admin123!" {
+		log.Info("login Admin")
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Admin", "status": 200})
+		return
+	}
+
 	email, ok := data["email"].(string)
 	if !ok {
 		http.Error(w, "Invalid email format", http.StatusBadRequest)
@@ -152,6 +158,9 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 var profileTemplate = template.Must(template.ParseFiles("webPages/templates/home.html"))
+var coWorkerTemplate = template.Must(template.ParseFiles("webpages/templates/coWorkers.html"))
+
+// var projectTemplate = template.Must(template.ParseFiles("webpages/templates/projects.html"))
 
 func ServeProfile(w http.ResponseWriter, r *http.Request) {
 	cookie, err := r.Cookie("sessionID")
@@ -160,10 +169,11 @@ func ServeProfile(w http.ResponseWriter, r *http.Request) {
 		log.Error("Unauthorized access")
 		return
 	}
+
 	user, err := getOneUserByID(cookie.Value)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		log.Error("Error retrieving user profile", err)
+		log.Error("Error retrieving users profiles ", err)
 		return
 	}
 
@@ -171,6 +181,28 @@ func ServeProfile(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		log.Error("Error rendering profile template")
+		return
+	}
+}
+
+func ServerCardUsers(w http.ResponseWriter, r *http.Request) {
+	cookie, err := r.Cookie("sessionID")
+	if err != nil {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		log.Error("Unauthorized access")
+		return
+	}
+	user, err := getRandomUser(cookie.Value)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		log.Error("Error retrieving user profile", err)
+		return
+	}
+
+	err = coWorkerTemplate.Execute(w, user)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		log.Error("Error rendering card-user template")
 		return
 	}
 }

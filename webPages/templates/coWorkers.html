@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Card with Bootstrap</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styleCards.css" />
+</head>
+<body>
+    <div class="container mx-0">
+        <div class="row d-flex align-items-center">
+            <div onclick="console.log('a')" class="col-3 text-center">
+                <span><h2>Pass</h2></span>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{.Name}}</h5>
+                        <p class="card-text"><b>Major: </b>{{.Profile.Major}}</p>
+                        <p class="card-text"><b>Skills: </b>{{range .Profile.Skills}}{{.}} {{end}}</p>
+                        <p class="card-text"><b>Interests: </b>{{.Profile.AcademicInterests}}</p>
+                        <p class="card-text"><b>BIO: </b>{{.Profile.Bio}}</p>
+                    </div>
+                </div>
+            </div>
+            <div onclick="console.log('a')" class="col-3 text-center">
+                <span><h2>Like</h2></span>
+            </div>
+        </div>
+    </div>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

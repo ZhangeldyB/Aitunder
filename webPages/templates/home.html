@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../styleHome.css" />
   </head>
   <body>
     <div class="container align-items-center">
@@ -20,8 +20,8 @@
                     <h4>{{.Name}}</h4>
                     <p class="text-secondary mb-1">Major: {{.Profile.Major}}</p>
                     <p class="text-muted font-size-sm">{{.Profile.DateOfBirth}}</p>
-                    <button class="btn btn-primary">Follow</button>
-                    <button class="btn btn-outline-primary">Message</button>
+                    <button class="btn btn-primary"><a href="/card/Project" class="text-white">Find Project</a></button>
+                    <button class="btn btn-outline-primary" > <a href="/card/Co-Worker">Find Co-Worker</a></button>
                   </div>
                 </div>
               </div>

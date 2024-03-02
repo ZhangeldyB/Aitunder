@@ -64,6 +64,39 @@ func getOneUserByID(userID string) (models.UserFull, error) {
 	return user, nil
 }
 
+func getRandomUser(userID string) (models.UserFull, error) {
+	var user models.UserFull
+	id, err := primitive.ObjectIDFromHex(userID)
+	if err != nil {
+		return user, err
+	}
+	pipeline := []bson.D{
+		{
+			{Key: "$match", Value: bson.D{{Key: "_id", Value: bson.D{{Key: "$ne", Value: id}}}}},
+		},
+		{
+			{Key: "$match", Value: bson.D{{Key: "viewedUsers", Value: bson.D{{Key: "$nin", Value: bson.A{id}}}}}},
+		},
+		{
+			{Key: "$sample", Value: bson.D{{Key: "size", Value: 1}}},
+		},
+	}
+	cursor, err := collection.Aggregate(context.Background(), pipeline)
+	if err != nil {
+		log.Error("error in aggregation ", err)
+		return user, err
+	}
+	defer cursor.Close(context.Background())
+
+	if cursor.Next(context.Background()) {
+		if err := cursor.Decode(&user); err != nil {
+			log.Error("error in decoding Cursor ", err)
+			return user, err
+		}
+	}
+	return user, nil
+}
+
 func getOneUserByEmail(email string) (*models.User, error) {
 	var user models.User
 	filter := bson.M{"email": email}
