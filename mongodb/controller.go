@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"text/template"
 
 	"github.com/sirupsen/logrus"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -56,19 +57,25 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 
 	var user models.User
 	_ = json.NewDecoder(r.Body).Decode(&user)
-	err := insertOneUser(user)
-
-	cookie := http.Cookie{
-		Name:  "sessionID",
-		Value: user.Id.Hex(),
-	}
-	http.SetCookie(w, &cookie)
-	log.Info("cookie created with id" + cookie.Value)
-
+	id, err := insertOneUser(user)
 	if err != nil {
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Email already used", "status": 400})
 		return
 	}
+
+	cookie, err := r.Cookie("sessionID")
+	if err != nil {
+		cookie = &http.Cookie{
+			Name:  "sessionID",
+			Value: id,
+			Path:  "/",
+		}
+		http.SetCookie(w, cookie)
+	} else {
+		cookie.Value = id
+		http.SetCookie(w, cookie)
+	}
+	log.Info("cookie created with id" + cookie.Value)
 	json.NewEncoder(w).Encode(map[string]interface{}{"message": "Account created successfully", "status": 200})
 }
 
@@ -116,6 +123,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		cookie = &http.Cookie{
 			Name:  "sessionID",
 			Value: user.Id.Hex(),
+			Path:  "/",
 		}
 		http.SetCookie(w, cookie)
 		log.Info("New session with id" + cookie.Value)
@@ -125,13 +133,11 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Login successful", "status": 200})
 		return
 	} else if user.Id.Hex() != "" {
-		cookie = &http.Cookie{
-			Name:  "sessionID",
-			Value: user.Id.Hex(),
-		}
+		cookie.Value = user.Id.Hex()
+		cookie.Path = "/"
 		http.SetCookie(w, cookie)
 
-		log.Info("New session with id" + cookie.Value)
+		log.Info("New session with id " + cookie.Value)
 	}
 
 	if user != nil && user.Password == password {
@@ -141,6 +147,30 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Wrong credentials", "status": 400})
 		log.Error("Invalid email or password")
+		return
+	}
+}
+
+var profileTemplate = template.Must(template.ParseFiles("webPages/templates/home.html"))
+
+func ServeProfile(w http.ResponseWriter, r *http.Request) {
+	cookie, err := r.Cookie("sessionID")
+	if err != nil {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		log.Error("Unauthorized access")
+		return
+	}
+	user, err := getOneUserByID(cookie.Value)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		log.Error("Error retrieving user profile", err)
+		return
+	}
+
+	err = profileTemplate.Execute(w, user)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		log.Error("Error rendering profile template")
 		return
 	}
 }

@@ -111,7 +111,13 @@
                     body: JSON.stringify(formData)
                 })
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(data => {
+                    if(response.status == 200){
+                        window.location.href = '/home'
+                    }else{
+                        window.location.reload()
+                    }
+                })
                 .catch(error => console.error('Error:', error));
             });
         });

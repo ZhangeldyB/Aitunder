@@ -3,18 +3,23 @@ package mongodb
 import (
 	"Aitunder/models"
 	"context"
+	"fmt"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func insertOneUser(user models.User) error {
+func insertOneUser(user models.User) (string, error) {
 	inserted, err := collection.InsertOne(context.Background(), user)
 	if err != nil {
-		return err
+		return "", err
+	}
+	insertedID, ok := inserted.InsertedID.(primitive.ObjectID)
+	if !ok {
+		return "", fmt.Errorf("failed to convert InsertedID to string")
 	}
 	log.Info("inserted one user in database with id:", inserted.InsertedID)
-	return nil
+	return insertedID.Hex(), nil
 }
 
 // func deleteOneUser(userId string) {
@@ -43,6 +48,20 @@ func getFullFromDB() []models.UserFull {
 	}
 
 	return users
+}
+
+func getOneUserByID(userID string) (models.UserFull, error) {
+	var user models.UserFull
+	id, err := primitive.ObjectIDFromHex(userID)
+	if err != nil {
+		return user, err
+	}
+	filter := bson.M{"_id": id}
+	err = collection.FindOne(context.Background(), filter).Decode(&user)
+	if err != nil {
+		return user, err
+	}
+	return user, nil
 }
 
 func getOneUserByEmail(email string) (*models.User, error) {
