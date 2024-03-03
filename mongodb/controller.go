@@ -337,7 +337,7 @@ func sendVerificationEmail(email, userID string) error {
 	mailer.SetHeader("From", "aitunderapp.notifications@gmail.com")
 	mailer.SetHeader("To", email)
 	mailer.SetHeader("Subject", "Account Verification")
-	mailer.SetBody("text/html", fmt.Sprintf("Please click the following link to verify your account: <a href='http://localhost:8080/verify?userID=%s'>Verify</a>", userID))
+	mailer.SetBody("text/html", fmt.Sprintf("Please click the following link to verify your account: <a href='http://aitunder-0spx.onrender.com/verify?userID=%s'>Verify</a>", userID))
 	dialer := gomail.NewDialer("smtp.gmail.com", 587, "aitunderapp.notifications@gmail.com", "hbgr gnxq enfr zmtn")
 	if err := dialer.DialAndSend(mailer); err != nil {
 		return err
