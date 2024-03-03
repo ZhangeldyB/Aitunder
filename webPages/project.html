@@ -63,7 +63,7 @@
                     body: JSON.stringify(formData)
                 })
                 .then(response => response.json())
-                .then(data => console.log(data))
+                .then(data =>  window.location.href="/home")
                 .catch(error => console.error('Error:', error));
             });
         });
