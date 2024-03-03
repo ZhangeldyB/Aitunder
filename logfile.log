@@ -1,0 +1,33 @@
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:12:39+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:12:39+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:14:25+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:14:25+06:00"}
+{"level":"error","msg":"Error retrieving users profiles mongo: no documents in result","time":"2024-03-03T14:14:36+06:00"}
+{"level":"info","msg":"New session with id 65e42db1fd5a61a19730b65f","time":"2024-03-03T14:14:51+06:00"}
+{"level":"info","msg":"Login successful","time":"2024-03-03T14:14:51+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:16:38+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:16:38+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:17:04+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:17:04+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:18:14+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:18:14+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:19:17+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:19:17+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:19:55+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:19:55+06:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e439521930d4a252d6296a\") ObjectID(\"65e42db1fd5a61a19730b65f\")","time":"2024-03-03T14:20:01+06:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e4394a1930d4a252d6292e\") ObjectID(\"65e42db1fd5a61a19730b65f\")","time":"2024-03-03T14:20:06+06:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e4394a1930d4a252d6292c\") ObjectID(\"65e42db1fd5a61a19730b65f\")","time":"2024-03-03T14:20:07+06:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e439461930d4a252d62904\") ObjectID(\"65e42db1fd5a61a19730b65f\")","time":"2024-03-03T14:20:38+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:20:51+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:20:51+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:22:54+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:22:54+06:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e439431930d4a252d628ee\") ObjectID(\"65e42db1fd5a61a19730b65f\")","time":"2024-03-03T14:23:02+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:23:22+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:23:22+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:24:29+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:24:29+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:25:28+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:25:28+06:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e439511930d4a252d62962\") ObjectID(\"65e42db1fd5a61a19730b65f\")","time":"2024-03-03T14:25:37+06:00"}
