@@ -113,10 +113,10 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    if(response.status == 200){
-                        window.location.href = '/home'
-                    }else{
-                        window.location.reload()
+                    if (data.status == 200) {
+                        window.location.href = '/home';
+                    } else {
+                        window.location.reload();
                     }
                 })
                 .catch(error => console.error('Error:', error));

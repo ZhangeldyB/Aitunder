@@ -209,3 +209,11 @@
 {"level":"info","msg":"MongoDB connection success","time":"2024-03-03T11:43:54+06:00"}
 {"level":"info","msg":"Logging initialized","time":"2024-03-03T11:43:54+06:00"}
 {"level":"info","msg":"login Admin","time":"2024-03-03T11:44:11+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T13:16:02+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T13:16:02+05:00"}
+{"level":"info","msg":"inserted one user in database with id:ObjectID(\"65e4321684ae624eb32da648\")","time":"2024-03-03T13:17:28+05:00"}
+{"level":"info","msg":"cookie created with id65e4321684ae624eb32da648","time":"2024-03-03T13:17:28+05:00"}
+{"level":"info","msg":"Added profile to user with ID: 65e4321684ae624eb32da648","time":"2024-03-03T13:18:28+05:00"}
+{"level":"info","msg":"Profile updated for id 65e4321684ae624eb32da648","time":"2024-03-03T13:18:28+05:00"}
+{"level":"info","msg":"Added profile to user with ID: 65e4321684ae624eb32da648","time":"2024-03-03T13:18:43+05:00"}
+{"level":"info","msg":"Profile updated for id 65e4321684ae624eb32da648","time":"2024-03-03T13:18:43+05:00"}
