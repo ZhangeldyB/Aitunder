@@ -217,3 +217,117 @@
 {"level":"info","msg":"Profile updated for id 65e4321684ae624eb32da648","time":"2024-03-03T13:18:28+05:00"}
 {"level":"info","msg":"Added profile to user with ID: 65e4321684ae624eb32da648","time":"2024-03-03T13:18:43+05:00"}
 {"level":"info","msg":"Profile updated for id 65e4321684ae624eb32da648","time":"2024-03-03T13:18:43+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T13:53:46+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T13:53:46+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=21217132)@gmail.com","time":"2024-03-03T13:55:00+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=69587204)@gmail.com","time":"2024-03-03T13:55:01+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=25756413)@gmail.com","time":"2024-03-03T13:55:02+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=77811693)@gmail.com","time":"2024-03-03T13:55:02+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=38566626)@gmail.com","time":"2024-03-03T13:55:03+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=79681396)@gmail.com","time":"2024-03-03T13:55:04+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=28408196)@gmail.com","time":"2024-03-03T13:55:05+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=47425906)@gmail.com","time":"2024-03-03T13:55:06+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=77924879)@gmail.com","time":"2024-03-03T13:55:07+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=67541721)@gmail.com","time":"2024-03-03T13:55:07+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=53543056)@gmail.com","time":"2024-03-03T13:55:08+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=13226472)@gmail.com","time":"2024-03-03T13:55:09+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=80665018)@gmail.com","time":"2024-03-03T13:55:10+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=29284946)@gmail.com","time":"2024-03-03T13:55:11+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=34075912)@gmail.com","time":"2024-03-03T13:55:12+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=12724374)@gmail.com","time":"2024-03-03T13:55:13+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=52949008)@gmail.com","time":"2024-03-03T13:55:13+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=94639976)@gmail.com","time":"2024-03-03T13:55:14+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=86392698)@gmail.com","time":"2024-03-03T13:55:15+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=54994011)@gmail.com","time":"2024-03-03T13:55:16+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=22882303)@gmail.com","time":"2024-03-03T13:55:17+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=22956859)@gmail.com","time":"2024-03-03T13:55:18+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=88085746)@gmail.com","time":"2024-03-03T13:55:19+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=91577268)@gmail.com","time":"2024-03-03T13:55:20+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=12381619)@gmail.com","time":"2024-03-03T13:55:20+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=55964083)@gmail.com","time":"2024-03-03T13:55:21+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=42572182)@gmail.com","time":"2024-03-03T13:55:22+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=82173878)@gmail.com","time":"2024-03-03T13:55:23+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=20035321)@gmail.com","time":"2024-03-03T13:55:24+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=81940478)@gmail.com","time":"2024-03-03T13:55:25+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=75685190)@gmail.com","time":"2024-03-03T13:55:26+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=26233543)@gmail.com","time":"2024-03-03T13:55:27+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=39507721)@gmail.com","time":"2024-03-03T13:55:27+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=92899733)@gmail.com","time":"2024-03-03T13:55:28+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=75553509)@gmail.com","time":"2024-03-03T13:55:29+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=99070205)@gmail.com","time":"2024-03-03T13:55:30+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=69609879)@gmail.com","time":"2024-03-03T13:55:31+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=62991973)@gmail.com","time":"2024-03-03T13:55:32+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=10765513)@gmail.com","time":"2024-03-03T13:55:33+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=62406095)@gmail.com","time":"2024-03-03T13:55:34+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=97660066)@gmail.com","time":"2024-03-03T13:55:34+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=90070354)@gmail.com","time":"2024-03-03T13:55:35+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=53325358)@gmail.com","time":"2024-03-03T13:55:36+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=79629962)@gmail.com","time":"2024-03-03T13:55:37+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=23993787)@gmail.com","time":"2024-03-03T13:55:38+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=39309610)@gmail.com","time":"2024-03-03T13:55:39+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=56678234)@gmail.com","time":"2024-03-03T13:55:40+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=73348323)@gmail.com","time":"2024-03-03T13:55:41+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=59451707)@gmail.com","time":"2024-03-03T13:55:41+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=18171101)@gmail.com","time":"2024-03-03T13:55:42+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=33647026)@gmail.com","time":"2024-03-03T13:55:43+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=27171434)@gmail.com","time":"2024-03-03T13:55:44+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=24401232)@gmail.com","time":"2024-03-03T13:55:45+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=21302438)@gmail.com","time":"2024-03-03T13:55:46+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=98332470)@gmail.com","time":"2024-03-03T13:55:47+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=92822495)@gmail.com","time":"2024-03-03T13:55:47+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=31818562)@gmail.com","time":"2024-03-03T13:55:48+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=89976705)@gmail.com","time":"2024-03-03T13:55:49+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=64969702)@gmail.com","time":"2024-03-03T13:55:50+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=11200492)@gmail.com","time":"2024-03-03T13:55:51+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=32036812)@gmail.com","time":"2024-03-03T13:55:52+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=88824926)@gmail.com","time":"2024-03-03T13:55:53+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=28474340)@gmail.com","time":"2024-03-03T13:55:53+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=54827524)@gmail.com","time":"2024-03-03T13:55:54+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=11281878)@gmail.com","time":"2024-03-03T13:55:55+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=93558565)@gmail.com","time":"2024-03-03T13:55:56+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=51476172)@gmail.com","time":"2024-03-03T13:55:57+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=52595561)@gmail.com","time":"2024-03-03T13:55:58+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=87386058)@gmail.com","time":"2024-03-03T13:55:59+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=84510124)@gmail.com","time":"2024-03-03T13:56:00+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=29283109)@gmail.com","time":"2024-03-03T13:56:01+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=41970236)@gmail.com","time":"2024-03-03T13:56:01+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=99957702)@gmail.com","time":"2024-03-03T13:56:02+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=70152049)@gmail.com","time":"2024-03-03T13:56:03+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=36624940)@gmail.com","time":"2024-03-03T13:56:04+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=93847566)@gmail.com","time":"2024-03-03T13:56:05+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=81551071)@gmail.com","time":"2024-03-03T13:56:06+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=78235874)@gmail.com","time":"2024-03-03T13:56:07+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=63688572)@gmail.com","time":"2024-03-03T13:56:08+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=71001966)@gmail.com","time":"2024-03-03T13:56:08+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=52809080)@gmail.com","time":"2024-03-03T13:56:09+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=98847292)@gmail.com","time":"2024-03-03T13:56:10+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=75662032)@gmail.com","time":"2024-03-03T13:56:11+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=17572227)@gmail.com","time":"2024-03-03T13:56:12+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=45019921)@gmail.com","time":"2024-03-03T13:56:13+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=68990172)@gmail.com","time":"2024-03-03T13:56:14+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=41404289)@gmail.com","time":"2024-03-03T13:56:14+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=44125115)@gmail.com","time":"2024-03-03T13:56:15+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=51677276)@gmail.com","time":"2024-03-03T13:56:16+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=66172215)@gmail.com","time":"2024-03-03T13:56:17+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=25389705)@gmail.com","time":"2024-03-03T13:56:18+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=99404127)@gmail.com","time":"2024-03-03T13:56:18+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=17507013)@gmail.com","time":"2024-03-03T13:56:19+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=11050131)@gmail.com","time":"2024-03-03T13:56:20+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=25307479)@gmail.com","time":"2024-03-03T13:56:20+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=85539991)@gmail.com","time":"2024-03-03T13:56:21+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=81148288)@gmail.com","time":"2024-03-03T13:56:22+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=15632970)@gmail.com","time":"2024-03-03T13:56:22+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=32899284)@gmail.com","time":"2024-03-03T13:56:23+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=35280543)@gmail.com","time":"2024-03-03T13:56:23+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=50512673)@gmail.com","time":"2024-03-03T13:56:24+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=18958265)@gmail.com","time":"2024-03-03T13:56:25+05:00"}
+{"level":"error","msg":"Failed to send notification email to user:%!s(int=86193052)@gmail.com","time":"2024-03-03T13:56:25+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:02:14+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:02:14+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:03:57+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:03:57+05:00"}
+{"level":"info","msg":"New session with id65e42db1fd5a61a19730b65f","time":"2024-03-03T14:04:10+05:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T14:04:10+05:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e4394f1930d4a252d62952\") ObjectID(\"65e42db1fd5a61a19730b65f\")","time":"2024-03-03T14:04:23+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T14:05:40+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T14:05:40+05:00"}
