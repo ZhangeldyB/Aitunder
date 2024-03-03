@@ -10,6 +10,10 @@ html, body{
     height: 100%;
 }
 
+.touch{
+    min-height: 100%;
+}
+
 .card{
     border-radius: 4%;
     border-color: black;

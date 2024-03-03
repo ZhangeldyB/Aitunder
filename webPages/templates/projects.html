@@ -2,91 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swipe Card</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <style>
-        body {
-            height: 100vh;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f8f9fa;
-        }
-
-        .card-container {
-            width: 300px;
-            height: 400px;
-            background-color: #ffffff;
-            border: 1px solid #ced4da;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .card-content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .invisible-button {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 50%;
-            cursor: pointer;
-        }
-
-        .pass-button {
-            left: 0;
-            background-color: transparent;
-            border: none;
-            outline: none;
-            color: #6c757d;
-        }
-
-        .like-button {
-            right: 0;
-            background-color: transparent;
-            border: none;
-            outline: none;
-            color: #6c757d;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Projects</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../styleCards.css" />
 </head>
 <body>
-
-<div class="card-container">
-    <button class="invisible-button pass-button" onclick="handlePass()">
-        Pass
-    </button>
-    <div class="card-content">
-        <!-- Your card content goes here -->
-        <h2>Card Content</h2>
-        <p>This is the content of your card.</p>
+    <div class="container mx-0">
+        <div class="row d-flex align-items-center">
+            <div onclick="console.log('a')" class="col-3 d-flex align-items-center justify-content-center touch">
+                <span><h2>Pass</h2></span>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{.Title}}</h5>
+                        <p class="card-text"><b>Description: </b>{{.Description}}</p>
+                        <p class="card-text"><b>Skills: </b>{{range .Skills}}{{.}} {{end}}</p>
+                    </div>
+                </div>
+            </div>
+            <div onclick="console.log('a')" class="col-3 d-flex align-items-center justify-content-center touch">
+                <span><h2>Like</h2></span>
+            </div>
+        </div>
     </div>
-    <button class="invisible-button like-button" onclick="handleLike()">
-        Like
-    </button>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-<script>
-    function handlePass() {
-        // Add logic for the "Pass" button
-        console.log("Pass");
-    }
-
-    function handleLike() {
-        // Add logic for the "Like" button
-        console.log("Like");
-    }
-</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>

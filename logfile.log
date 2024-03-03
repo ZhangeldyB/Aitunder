@@ -113,3 +113,69 @@
 {"level":"info","msg":"MongoDB connection success","time":"2024-03-03T04:24:32+06:00"}
 {"level":"info","msg":"Logging initialized","time":"2024-03-03T04:24:32+06:00"}
 {"level":"info","msg":"login Admin","time":"2024-03-03T04:24:47+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T05:38:02+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T05:38:02+05:00"}
+{"level":"info","msg":"new project with id: 65e3c6cce2ab8e64f18089b0","time":"2024-03-03T05:39:40+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T05:41:56+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T05:41:56+05:00"}
+{"level":"info","msg":"new project with id: 65e3c76161323eebc9e75093","time":"2024-03-03T05:42:10+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T05:43:15+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T05:43:15+05:00"}
+{"level":"info","msg":"new project with id: 65e3c7d7006c5f08a2d51001","time":"2024-03-03T05:44:08+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T05:44:54+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T05:44:54+05:00"}
+{"level":"info","msg":"new project with id: 65e3c82a26d5df9dc8209015","time":"2024-03-03T05:45:31+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T05:46:48+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T05:46:48+05:00"}
+{"level":"info","msg":"new project with id: 65e3c89346a0e1e7aa53b223","time":"2024-03-03T05:47:16+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T06:02:31+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T06:02:31+05:00"}
+{"level":"info","msg":"New session with id 65e37c7eb9a58a09df88ffc6","time":"2024-03-03T06:03:04+05:00"}
+{"level":"info","msg":"Login successful","time":"2024-03-03T06:03:04+05:00"}
+{"level":"info","msg":"new project with id: 65e3cc7aa4eb45e26945f925","time":"2024-03-03T06:03:54+05:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T06:05:39+05:00"}
+{"level":"info","msg":"new project with id: 65e3cd06a4eb45e26945f926","time":"2024-03-03T06:06:14+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T06:18:02+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T06:18:02+05:00"}
+{"level":"info","msg":"New session with id 65e1c7feeaa0bed10c23e86b","time":"2024-03-03T06:18:26+05:00"}
+{"level":"info","msg":"Login successful","time":"2024-03-03T06:18:26+05:00"}
+{"level":"info","msg":"New session with id 65e1c7feeaa0bed10c23e86b","time":"2024-03-03T06:18:26+05:00"}
+{"level":"info","msg":"Login successful","time":"2024-03-03T06:18:26+05:00"}
+{"level":"info","msg":"new project with id: 65e3cffacd5d463b3b06b437","time":"2024-03-03T06:18:50+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T06:22:26+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T06:22:26+05:00"}
+{"level":"error","msg":"Error rendering card-user template","time":"2024-03-03T06:22:36+05:00"}
+{"level":"error","msg":"Error rendering card-user template","time":"2024-03-03T06:22:40+05:00"}
+{"level":"error","msg":"Error rendering card-user template","time":"2024-03-03T06:22:41+05:00"}
+{"level":"error","msg":"Error rendering card-user template","time":"2024-03-03T06:23:15+05:00"}
+{"level":"error","msg":"Error rendering card-user template","time":"2024-03-03T06:23:17+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T06:23:20+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T06:23:20+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T06:48:12+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T06:48:12+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T07:08:29+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T07:08:29+05:00"}
+{"level":"info","msg":"New session with id 65e37c7eb9a58a09df88ffc6","time":"2024-03-03T07:09:05+05:00"}
+{"level":"error","msg":"Invalid email or password","time":"2024-03-03T07:09:05+05:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T07:09:17+05:00"}
+{"level":"info","msg":"new project with id: 65e3dc1124b36feb864ab093","time":"2024-03-03T07:10:25+05:00"}
+{"level":"info","msg":"new project with id: 65e3dc2e24b36feb864ab094","time":"2024-03-03T07:10:55+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T07:12:09+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T07:12:09+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T07:15:43+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T07:15:43+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T07:16:48+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T07:16:48+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T07:17:07+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T07:17:07+05:00"}
+{"level":"error","msg":"Error rendering profile template","time":"2024-03-03T07:17:14+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T07:17:32+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T07:17:32+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T07:18:46+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T07:18:46+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T07:20:08+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T07:20:08+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T07:21:37+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T07:21:37+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T07:31:22+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T07:31:22+05:00"}

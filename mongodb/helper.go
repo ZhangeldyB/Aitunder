@@ -22,6 +22,18 @@ func insertOneUser(user models.User) (string, error) {
 	return insertedID.Hex(), nil
 }
 
+func insertOneProject(project models.Project) (string, error) {
+	inserted, err := projectCollection.InsertOne(context.Background(), project)
+	if err != nil {
+		return "", err
+	}
+	insertedID, ok := inserted.InsertedID.(primitive.ObjectID)
+	if !ok {
+		return "", fmt.Errorf("failed to convert InsertedID to string")
+	}
+	return insertedID.Hex(), nil
+}
+
 // func deleteOneUser(userId string) {
 // 	id, _ := primitive.ObjectIDFromHex(userId)
 // 	filter := bson.M{"_id": id}
@@ -63,6 +75,27 @@ func getOneUserByID(userID string) (models.UserFull, error) {
 	}
 	return user, nil
 }
+func getProjectsByID(userID string) ([]models.Project, error) {
+	id, err := primitive.ObjectIDFromHex(userID)
+	if err != nil {
+		return make([]models.Project, 0), err
+	}
+	filter := bson.M{"owner": id}
+	cursor, err := projectCollection.Find(context.Background(), filter)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer cursor.Close(context.Background())
+	var projects []models.Project
+	for cursor.Next(context.Background()) {
+		var project models.Project
+		if err = cursor.Decode(&project); err != nil {
+			log.Fatal(err)
+		}
+		projects = append(projects, project)
+	}
+	return projects, nil
+}
 
 func getRandomUser(userID string) (models.UserFull, error) {
 	var user models.UserFull
@@ -95,6 +128,38 @@ func getRandomUser(userID string) (models.UserFull, error) {
 		}
 	}
 	return user, nil
+}
+func getRandomProject(userID string) (models.Project, error) {
+	var project models.Project
+	id, err := primitive.ObjectIDFromHex(userID)
+	if err != nil {
+		return project, err
+	}
+	pipeline := []bson.D{
+		{
+			{Key: "$match", Value: bson.D{{Key: "owner", Value: bson.D{{Key: "$ne", Value: id}}}}},
+		},
+		{
+			{Key: "$match", Value: bson.D{{Key: "viewedBy", Value: bson.D{{Key: "$nin", Value: bson.A{id}}}}}},
+		},
+		{
+			{Key: "$sample", Value: bson.D{{Key: "size", Value: 1}}},
+		},
+	}
+	cursor, err := projectCollection.Aggregate(context.Background(), pipeline)
+	if err != nil {
+		log.Error("error in aggregation ", err)
+		return project, err
+	}
+	defer cursor.Close(context.Background())
+
+	if cursor.Next(context.Background()) {
+		if err := cursor.Decode(&project); err != nil {
+			log.Error("error in decoding Cursor ", err)
+			return project, err
+		}
+	}
+	return project, nil
 }
 
 func getOneUserByEmail(email string) (*models.User, error) {

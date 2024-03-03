@@ -50,6 +50,8 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
 		servePage(w, "webPages/admin.html")
 	case "/profile":
 		servePage(w, "webPages/profile.html")
+	case "/project":
+		servePage(w, "webPages/project.html")
 	default:
 		http.NotFound(w, r)
 		defer r.Body.Close()
@@ -83,14 +85,16 @@ func main() {
 	http.HandleFunc("/login", pageHandler)
 	http.HandleFunc("/admin", pageHandler)
 	http.HandleFunc("/profile", pageHandler)
+	http.HandleFunc("/project", pageHandler)
 	http.HandleFunc("/api/test", testRequest)
 	http.HandleFunc("/api/signUp", mongodb.AddUser)
 	http.HandleFunc("/api/login", mongodb.LoginHandler)
 	http.HandleFunc("/api/sendNotification", mongodb.SendNotificationToUsers)
 	http.HandleFunc("/card/Co-Worker", mongodb.ServerCardUsers)
-	// http.HandleFunc("/card/Project", mongodb.ServeCardProjects)
+	http.HandleFunc("/card/Project", mongodb.ServeCardProjects)
 	http.HandleFunc("/home", mongodb.ServeProfile)
 	http.HandleFunc("/api/profile/add", mongodb.AddUserProfile)
+	http.HandleFunc("/api/project/add", mongodb.AddProject)
 	http.HandleFunc("/api/getAllUsers", mongodb.GetAllUsers)
 	http.HandleFunc("/verify", mongodb.VerifyAccount)
 	http.HandleFunc("/main", handleWithRateLimit(pageHandler))

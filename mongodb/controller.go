@@ -11,6 +11,7 @@ import (
 	"text/template"
 
 	"github.com/sirupsen/logrus"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"gopkg.in/gomail.v2"
@@ -23,6 +24,7 @@ const dbName = "aitunder"
 const colName = "users"
 
 var collection *mongo.Collection
+var projectCollection *mongo.Collection
 
 func init() {
 	file, err := os.OpenFile("logfile.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
@@ -43,6 +45,7 @@ func init() {
 	log.Info("MongoDB connection success")
 
 	collection = client.Database(dbName).Collection(colName)
+	projectCollection = client.Database(dbName).Collection("projects")
 }
 
 func GetAllUsers(w http.ResponseWriter, r *http.Request) {
@@ -58,6 +61,7 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 
 	var user models.User
 	_ = json.NewDecoder(r.Body).Decode(&user)
+	user.ViewedUsers = make([]primitive.ObjectID, 0)
 	id, err := insertOneUser(user)
 	if err != nil {
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Email already used", "status": 400})
@@ -86,7 +90,29 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 	} else {
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "User registered successfully. Please verify your email.", "status": 200})
 	}
+}
 
+func AddProject(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Allow-Control-Allow-Methods", "POST")
+	var project models.Project
+	_ = json.NewDecoder(r.Body).Decode(&project)
+	cookie, err := r.Cookie("sessionID")
+	if err != nil {
+		log.Error("UnAuthorised try to add project")
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Unauthorised", "status": 400})
+		return
+	}
+	project.Owner, _ = primitive.ObjectIDFromHex(cookie.Value)
+	project.ViewedBy = make([]primitive.ObjectID, 0)
+	id, err := insertOneProject(project)
+	if err != nil {
+		http.Error(w, "Failed to add project", http.StatusInternalServerError)
+		log.Error("Failed to add project, ", err)
+		return
+	}
+	log.Info("new project with id: ", id)
+	json.NewEncoder(w).Encode(map[string]interface{}{"message": "Project added successfully", "status": 200})
 }
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
@@ -150,7 +176,6 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		http.SetCookie(w, cookie)
 		log.Info("New session with id" + cookie.Value)
 	}
-	fmt.Println(user.Id, cookie.Value)
 	if cookie.Value == user.Id.Hex() {
 		log.Info("login with cookies")
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Login successful", "status": 200})
@@ -176,8 +201,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
 var profileTemplate = template.Must(template.ParseFiles("webPages/templates/home.html"))
 var coWorkerTemplate = template.Must(template.ParseFiles("webpages/templates/coWorkers.html"))
-
-// var projectTemplate = template.Must(template.ParseFiles("webpages/templates/projects.html"))
+var projectTemplate = template.Must(template.ParseFiles("webpages/templates/projects.html"))
 
 func ServeProfile(w http.ResponseWriter, r *http.Request) {
 	cookie, err := r.Cookie("sessionID")
@@ -193,9 +217,19 @@ func ServeProfile(w http.ResponseWriter, r *http.Request) {
 		log.Error("Error retrieving users profiles ", err)
 		return
 	}
-	fmt.Println(cookie.Value)
+	projects, err := getProjectsByID(cookie.Value)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		log.Error("Error retrieving project ", err)
+		return
+	}
 
-	err = profileTemplate.Execute(w, user)
+	data := models.UserProjectCombined{
+		User:     user,
+		Projects: projects,
+	}
+	fmt.Println(data)
+	err = profileTemplate.Execute(w, data)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		log.Error("Error rendering profile template")
@@ -218,6 +252,28 @@ func ServerCardUsers(w http.ResponseWriter, r *http.Request) {
 	}
 
 	err = coWorkerTemplate.Execute(w, user)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		log.Error("Error rendering card-user template")
+		return
+	}
+}
+
+func ServeCardProjects(w http.ResponseWriter, r *http.Request) {
+	cookie, err := r.Cookie("sessionID")
+	if err != nil {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		log.Error("Unauthorized access")
+		return
+	}
+	project, err := getRandomProject(cookie.Value)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		log.Error("Error retrieving project", err)
+		return
+	}
+
+	err = projectTemplate.Execute(w, project)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		log.Error("Error rendering card-user template")
