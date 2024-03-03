@@ -209,3 +209,15 @@
 {"level":"info","msg":"MongoDB connection success","time":"2024-03-03T11:43:54+06:00"}
 {"level":"info","msg":"Logging initialized","time":"2024-03-03T11:43:54+06:00"}
 {"level":"info","msg":"login Admin","time":"2024-03-03T11:44:11+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T13:05:26+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T13:05:26+06:00"}
+{"level":"info","msg":"inserted one user in database with id:ObjectID(\"65e42136041bcd60dd3afbe7\")","time":"2024-03-03T13:05:34+06:00"}
+{"level":"info","msg":"cookie created with id65e42136041bcd60dd3afbe7","time":"2024-03-03T13:05:34+06:00"}
+{"level":"info","msg":"Added profile to user with ID: 65e42136041bcd60dd3afbe7","time":"2024-03-03T13:07:31+06:00"}
+{"level":"info","msg":"Profile updated for id 65e42136041bcd60dd3afbe7","time":"2024-03-03T13:07:31+06:00"}
+{"level":"error","msg":"Error retrieving users profiles mongo: no documents in result","time":"2024-03-03T13:12:21+06:00"}
+{"level":"error","msg":"Error retrieving users profiles mongo: no documents in result","time":"2024-03-03T13:12:23+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-03-03T13:12:52+06:00"}
+{"level":"error","msg":"Error retrieving users profiles mongo: no documents in result","time":"2024-03-03T13:12:52+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-03-03T13:13:08+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-03-03T13:13:08+06:00"}

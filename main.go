@@ -40,7 +40,7 @@ func handleWithRateLimit(handler http.HandlerFunc) http.HandlerFunc {
 
 func pageHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
-	case "/main":
+	case "/":
 		servePage(w, "webPages/registration.html")
 	case "/login":
 		servePage(w, "webPages/login.html")
@@ -99,7 +99,7 @@ func main() {
 	http.HandleFunc("/api/project/add", mongodb.AddProject)
 	http.HandleFunc("/api/getAllUsers", mongodb.GetAllUsers)
 	http.HandleFunc("/verify", mongodb.VerifyAccount)
-	http.HandleFunc("/main", handleWithRateLimit(pageHandler))
+	http.HandleFunc("/", handleWithRateLimit(pageHandler))
 	http.Handle("/", http.FileServer(http.Dir("webPages/")))
 	fmt.Println("Server is running on http://localhost:8080/main")
 	err := http.ListenAndServe(":8080", nil)
