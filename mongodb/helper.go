@@ -7,6 +7,7 @@ import (
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"gopkg.in/gomail.v2"
 )
 
 func insertOneUser(user models.User) (string, error) {
@@ -108,7 +109,7 @@ func getRandomUser(userID string) (models.UserFull, error) {
 			{Key: "$match", Value: bson.D{{Key: "_id", Value: bson.D{{Key: "$ne", Value: id}}}}},
 		},
 		{
-			{Key: "$match", Value: bson.D{{Key: "viewedUsers", Value: bson.D{{Key: "$nin", Value: bson.A{id}}}}}},
+			{Key: "$match", Value: bson.D{{Key: "viewedBy", Value: bson.D{{Key: "$nin", Value: bson.A{id}}}}}},
 		},
 		{
 			{Key: "$sample", Value: bson.D{{Key: "size", Value: 1}}},
@@ -189,6 +190,53 @@ func addProfileToUser(userId string, profile models.Profile) error {
 	log.Info("Added profile to user with ID: ", userId)
 	return nil
 }
+func setViewedUs(userID string, visitingID string) error {
+	id, err := primitive.ObjectIDFromHex(userID)
+	if err != nil {
+		return err
+	}
+	visID, err := primitive.ObjectIDFromHex(visitingID)
+	if err != nil {
+		return err
+	}
+
+	filter := bson.M{"_id": visID}
+	update := bson.M{
+		"$addToSet": bson.M{
+			"viewedBy": id,
+		},
+	}
+	_, err = collection.UpdateOne(context.Background(), filter, update)
+	if err != nil {
+		return err
+	}
+	log.Info("user got viewed, ", visID, " ", id)
+	return nil
+}
+
+func setViewedProj(userId string, projectID string) error {
+	id, err := primitive.ObjectIDFromHex(userId)
+	if err != nil {
+		return err
+	}
+	projId, err := primitive.ObjectIDFromHex(projectID)
+	if err != nil {
+		return err
+	}
+
+	filter := bson.M{"_id": projId}
+	update := bson.M{
+		"$addToSet": bson.M{
+			"viewedBy": id,
+		},
+	}
+	_, err = projectCollection.UpdateOne(context.Background(), filter, update)
+	if err != nil {
+		return err
+	}
+	log.Info("project got viewed, ", projId)
+	return nil
+}
 
 func updateOneUserByID(userID string) error {
 	id, err := primitive.ObjectIDFromHex(userID)
@@ -213,7 +261,7 @@ func updateOneUserByID(userID string) error {
 }
 
 func getAllAuthorizedUsers() ([]models.User, error) {
-	filter := bson.M{"accountActivated": true} // Assuming accountActivated field determines authorization
+	filter := bson.M{"accountActivated": true}
 	cursor, err := collection.Find(context.Background(), filter)
 	if err != nil {
 		return nil, err
@@ -230,4 +278,46 @@ func getAllAuthorizedUsers() ([]models.User, error) {
 	}
 
 	return users, nil
+}
+
+func addLikedUser(loggedInUserID, userID string) error {
+	id, err := primitive.ObjectIDFromHex(loggedInUserID)
+	if err != nil {
+		return err
+	}
+	likeID, err := primitive.ObjectIDFromHex(userID)
+	if err != nil {
+		return err
+	}
+
+	filter := bson.M{"_id": id}
+
+	update := bson.M{
+		"$addToSet": bson.M{
+			"likedUsers": likeID,
+		},
+	}
+
+	_, err = collection.UpdateOne(context.Background(), filter, update)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func sendNotificationEmail(email, message string) error {
+	mailer := gomail.NewMessage()
+	mailer.SetHeader("From", "aitunderapp.notifications@gmail.com")
+	mailer.SetHeader("To", email)
+	mailer.SetHeader("Subject", "Notification")
+	mailer.SetBody("text/plain", message)
+
+	dialer := gomail.NewDialer("smtp.gmail.com", 587, "aitunderapp.notifications@gmail.com", "hbgr gnxq enfr zmtn")
+
+	if err := dialer.DialAndSend(mailer); err != nil {
+		return err
+	}
+
+	return nil
 }

@@ -10,7 +10,7 @@
 <body>
     <div class="container mx-0">
         <div class="row d-flex align-items-center">
-            <div onclick="console.log('a')" class="col-3 d-flex align-items-center justify-content-center touch">
+            <div onclick="window.location.reload()" class="col-3 d-flex align-items-center justify-content-center touch">
                 <span><h2>Pass</h2></span>
             </div>
             <div class="col-6">
@@ -24,15 +24,36 @@
                     </div>
                 </div>
             </div>
-            <div onclick="console.log('a')" class="col-3 d-flex align-items-center justify-content-center touch">
+            <div onclick="likeUser('{{.ID}}')" class="col-3 d-flex align-items-center justify-content-center touch">
                 <span><h2>Like</h2></span>
             </div>
+
         </div>
     </div>
 <!-- Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function likeUser(userId) {
+        fetch('/card/LikeUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({"userID": userId}),
+        })
+        .then(response => {
+            if (response.status === 200) {
+                window.location.reload()
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    }
+</script>
+
 
 </body>
 </html>

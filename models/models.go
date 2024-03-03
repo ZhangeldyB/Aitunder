@@ -9,7 +9,7 @@ type User struct {
 	Password         string               `json:"password,omitempty"`
 	Profile          Profile              `json:"profile,omitempty"`
 	AccountActivated bool                 `json:"accountActivated,omitempty" bson:"accountActivated,omitempty"`
-	ViewedUsers      []primitive.ObjectID `json:"viewedUsers,omitempty" bson:"viewedUsers,omitempty"`
+	ViewedBy         []primitive.ObjectID `json:"viewedBy,omitempty" bson:"viewedBy,omitempty"`
 }
 
 type Profile struct {
@@ -36,7 +36,8 @@ type UserFull struct {
 		Skills            []string `json:"skills" bson:"skills"`
 		SocialLinks       []string `json:"sociallinks" bson:"sociallinks"`
 	} `json:"profile" bson:"profile"`
-	ViewedUsers []primitive.ObjectID `json:"viewedUsers,omitempty" bson:"viewedUsers,omitempty"`
+	ViewedBy   []primitive.ObjectID `json:"viewedBy,omitempty" bson:"viewedBy,omitempty"`
+	LikedUsers []primitive.ObjectID `json:"likedUsers,omitempty" bson:"likedUsers,omitempty"`
 }
 
 type Project struct {

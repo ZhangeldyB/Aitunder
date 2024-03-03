@@ -61,7 +61,7 @@ func AddUser(w http.ResponseWriter, r *http.Request) {
 
 	var user models.User
 	_ = json.NewDecoder(r.Body).Decode(&user)
-	user.ViewedUsers = make([]primitive.ObjectID, 0)
+	user.ViewedBy = make([]primitive.ObjectID, 0)
 	id, err := insertOneUser(user)
 	if err != nil {
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Email already used", "status": 400})
@@ -228,7 +228,6 @@ func ServeProfile(w http.ResponseWriter, r *http.Request) {
 		User:     user,
 		Projects: projects,
 	}
-	fmt.Println(data)
 	err = profileTemplate.Execute(w, data)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
@@ -244,6 +243,12 @@ func ServerCardUsers(w http.ResponseWriter, r *http.Request) {
 		log.Error("Unauthorized access")
 		return
 	}
+	var projects []models.Project
+	projects, _ = getProjectsByID(cookie.Value)
+	if projects == nil {
+		http.Redirect(w, r, "/project", http.StatusFound)
+		return
+	}
 	user, err := getRandomUser(cookie.Value)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
@@ -251,7 +256,23 @@ func ServerCardUsers(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = coWorkerTemplate.Execute(w, user)
+	err = setViewedUs(cookie.Value, user.ID.Hex())
+	if err != nil {
+		log.Error("cannot set project viewed ", err)
+	}
+
+	data := map[string]interface{}{
+		"ID":   user.ID.Hex(),
+		"Name": user.Name,
+		"Profile": map[string]interface{}{
+			"Major":             user.Profile.Major,
+			"Bio":               user.Profile.Bio,
+			"AcademicInterests": user.Profile.AcademicInterests,
+			"Skills":            user.Profile.Skills,
+		},
+	}
+
+	err = coWorkerTemplate.Execute(w, data)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		log.Error("Error rendering card-user template")
@@ -272,7 +293,10 @@ func ServeCardProjects(w http.ResponseWriter, r *http.Request) {
 		log.Error("Error retrieving project", err)
 		return
 	}
-
+	err = setViewedProj(cookie.Value, project.Id.Hex())
+	if err != nil {
+		log.Error("cannot set project viewed ", err)
+	}
 	err = projectTemplate.Execute(w, project)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
@@ -341,7 +365,6 @@ func VerifyAccount(w http.ResponseWriter, r *http.Request) {
 func SendNotificationToUsers(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	// Read the notification message from the request body
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
 		http.Error(w, "Error reading request body", http.StatusInternalServerError)
@@ -350,10 +373,8 @@ func SendNotificationToUsers(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	// Convert the message to string
 	notificationMessage := string(body)
 
-	// Get all authorized users from the database
 	authorizedUsers, err := getAllAuthorizedUsers()
 	if err != nil {
 		http.Error(w, "Error getting authorized users", http.StatusInternalServerError)
@@ -361,12 +382,11 @@ func SendNotificationToUsers(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Send notification email to each authorized user
 	for _, user := range authorizedUsers {
 		err := sendNotificationEmail(user.Email, notificationMessage)
 		if err != nil {
 			log.Error("Failed to send notification email to user:", user.Email)
-			continue // Continue sending notification to other users even if one fails
+			continue
 		}
 	}
 
@@ -374,21 +394,38 @@ func SendNotificationToUsers(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(map[string]interface{}{"message": "Notification sent to all authorized users", "status": 200})
 }
 
-func sendNotificationEmail(email, message string) error {
-	// Create a new email message
-	mailer := gomail.NewMessage()
-	mailer.SetHeader("From", "aitunderapp.notifications@gmail.com")
-	mailer.SetHeader("To", email)
-	mailer.SetHeader("Subject", "Notification")
-	mailer.SetBody("text/plain", message)
+func LikeUser(w http.ResponseWriter, r *http.Request) {
+	var data map[string]string
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, "Error reading request body", http.StatusBadRequest)
+		log.Error("Error reading request body")
+		return
+	}
+	defer r.Body.Close()
 
-	// Create a dialer to establish connection with SMTP server
-	dialer := gomail.NewDialer("smtp.gmail.com", 587, "aitunderapp.notifications@gmail.com", "hbgr gnxq enfr zmtn")
-
-	// Send the email
-	if err := dialer.DialAndSend(mailer); err != nil {
-		return err
+	err = json.Unmarshal(body, &data)
+	if err != nil {
+		log.Error("cannot unmarshal request")
+		return
 	}
 
-	return nil
+	cookie, err := r.Cookie("sessionID")
+	if err != nil {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		log.Error("Unauthorized access")
+		return
+	}
+	loggedInUserID := cookie.Value
+
+	err = addLikedUser(loggedInUserID, data["userID"])
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		log.Error("Error adding liked user", err)
+		return
+	}
+
+	// You can send a success response if needed
+	json.NewEncoder(w).Encode(map[string]interface{}{"message": "User liked", "status": 200})
+	log.Error("user ", data["userID"], " was liked by ", loggedInUserID)
 }

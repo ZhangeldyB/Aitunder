@@ -92,6 +92,8 @@ func main() {
 	http.HandleFunc("/api/sendNotification", mongodb.SendNotificationToUsers)
 	http.HandleFunc("/card/Co-Worker", mongodb.ServerCardUsers)
 	http.HandleFunc("/card/Project", mongodb.ServeCardProjects)
+	// http.HandleFunc("/card/LikeProject", mongodb.LikeProject)
+	http.HandleFunc("/card/LikeUser", mongodb.LikeUser)
 	http.HandleFunc("/home", mongodb.ServeProfile)
 	http.HandleFunc("/api/profile/add", mongodb.AddUserProfile)
 	http.HandleFunc("/api/project/add", mongodb.AddProject)
