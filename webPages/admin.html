@@ -122,109 +122,127 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function () {
-            let users;
+$(document).ready(function () {
+    let users; // Define users globally
+    let currentPage = 1;
+    const pageSize = 5;
 
-            function fetchAllUsersWithPortfolio() {
-                $.ajax({
-                    url: '/api/getAllUsers',
-                    method: 'GET',
-                    success: function (data) {
-                        users = data;
-                        renderUsersTable();
-                    },
-                    error: function (error) {
-                        console.error('Error fetching users:', error);
-                    }
-                });
-            }
-
-            fetchAllUsersWithPortfolio();
-
-            function renderUsersTable() {
-                $('#tableBodyUsers').empty();
-                const filterByMajor = $('#filterByMajor').val();
-                const sortOption = $('#sortUsers').val();
-
-                let filteredUsers = users.filter(user => {
-                    const profile = user.profile || {};
-                    return filterByMajor === 'none' || profile.major === filterByMajor;
-                });
-
-                if (sortOption === 'name') {
-                    filteredUsers.sort((a, b) => a.name.localeCompare(b.name));
-                } else if (sortOption === 'email') {
-                    filteredUsers.sort((a, b) => a.email.localeCompare(b.email));
-                } else if (sortOption === 'dob') {
-                    filteredUsers.sort((a, b) => (a.profile && b.profile) ? a.profile.dateOfBirth.localeCompare(b.profile.dateOfBirth) : 0);
-                }
-
-                const pageSize = 5;
-                const totalPages = Math.ceil(filteredUsers.length / pageSize);
-                const currentPage = 1;
-
-                const startIndex = (currentPage - 1) * pageSize;
-                const endIndex = startIndex + pageSize;
-                const currentPageUsers = filteredUsers.slice(startIndex, endIndex);
-
-                currentPageUsers.forEach(user => {
-                    const profile = user.profile || {};
-
-                    $('#tableBodyUsers').append(`
-                        <tr>
-                            <td>${user.name}</td>
-                            <td>${user.email}</td>
-                            <td>${user.password}</td>
-                            <td>${profile.dateOfBirth || ''}</td>
-                            <td>${profile.major || ''}</td>
-                            <td>${profile.bio || ''}</td>
-                            <td>${profile.academicinterests || ''}</td>
-                            <td>${profile.skills ? profile.skills.join(', ') : ''}</td>
-                            <td>${profile.sociallinks ? profile.sociallinks.join(', ') : ''}</td>
-                        </tr>
-                    `);
-                });
-
-                renderPagination('#paginationUsers', currentPage, totalPages);
-            }
-
-            function renderPagination(containerId, currentPage, totalPages) {
-                const paginationContainer = $(containerId);
-                paginationContainer.empty();
-
-                paginationContainer.append(`
-                    <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
-                        <a class="page-link" onclick="changePage(${currentPage - 1})">Previous</a>
-                    </li>
-                `);
-
-                for (let page = 1; page <= totalPages; page++) {
-                    paginationContainer.append(`
-                        <li class="page-item ${currentPage === page ? 'active' : ''}">
-                            <a class="page-link" onclick="changePage(${page})">${page}</a>
-                        </li>
-                    `);
-                }
-
-                paginationContainer.append(`
-                    <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
-                        <a class="page-link" onclick="changePage(${currentPage + 1})">Next</a>
-                    </li>
-                `);
-            }
-
-            function changePage(newPage) {
+    // Function to fetch users
+    function fetchAllUsersWithPortfolio() {
+        $.ajax({
+            url: '/api/getAllUsers',
+            method: 'GET',
+            success: function (data) {
+                users = data;
                 renderUsersTable();
+            },
+            error: function (error) {
+                console.error('Error fetching users:', error);
             }
+        });
+    }
 
-            $('#filterByMajor, #sortUsers').change(function () {
-                renderUsersTable();
-            });
+    // Function to render users table
+    function renderUsersTable() {
+        const filterByMajor = $('#filterByMajor').val();
+        const sortOption = $('#sortUsers').val();
+
+        let filteredUsers = users.filter(user => {
+            const profile = user.profile || {};
+            return filterByMajor === 'none' || profile.major === filterByMajor;
         });
 
+        if (sortOption === 'name') {
+            filteredUsers.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (sortOption === 'email') {
+            filteredUsers.sort((a, b) => a.email.localeCompare(b.email));
+        } else if (sortOption === 'dob') {
+            filteredUsers.sort((a, b) => (a.profile && b.profile) ? a.profile.dateOfBirth.localeCompare(b.profile.dateOfBirth) : 0);
+        }
 
+        const totalUsers = filteredUsers.length;
+        const totalPages = Math.ceil(totalUsers / pageSize);
 
-        $(document).ready(function () {
+        // Calculate start and end indices based on currentPage
+        const startIndex = (currentPage - 1) * pageSize;
+        const endIndex = Math.min(startIndex + pageSize, totalUsers);
+
+        const currentPageUsers = filteredUsers.slice(startIndex, endIndex);
+
+        $('#tableBodyUsers').empty();
+
+        currentPageUsers.forEach(user => {
+            const profile = user.profile || {};
+
+            $('#tableBodyUsers').append(`
+                <tr>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.password}</td>
+                    <td>${profile.dateOfBirth || ''}</td>
+                    <td>${profile.major || ''}</td>
+                    <td>${profile.bio || ''}</td>
+                    <td>${profile.academicinterests || ''}</td>
+                    <td>${profile.skills ? profile.skills.join(', ') : ''}</td>
+                    <td>${profile.sociallinks ? profile.sociallinks.join(', ') : ''}</td>
+                </tr>
+            `);
+        });
+
+        renderPagination(totalPages);
+    }
+
+    // Function to render pagination
+    function renderPagination(totalPages) {
+        const paginationContainer = $('#paginationUsers');
+        paginationContainer.empty();
+
+        paginationContainer.append(`
+            <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                <a class="page-link" href="#" data-page="${currentPage - 1}">Previous</a>
+            </li>
+        `);
+
+        for (let page = 1; page <= totalPages; page++) {
+            paginationContainer.append(`
+                <li class="page-item ${currentPage === page ? 'active' : ''}">
+                    <a class="page-link" href="#" data-page="${page}">${page}</a>
+                </li>
+            `);
+        }
+
+        paginationContainer.append(`
+            <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                <a class="page-link" href="#" data-page="${currentPage + 1}">Next</a>
+            </li>
+        `);
+
+        // Attach event listener to pagination links
+        paginationContainer.find('.page-link').click(function(event) {
+            event.preventDefault();
+            const newPage = $(this).data('page');
+            changePage(newPage, totalPages); // Pass totalPages to changePage function
+        });
+    }
+
+    // Function to change page
+    function changePage(newPage, totalPages) {
+        if (newPage < 1 || newPage > totalPages) {
+            return;
+        }
+        currentPage = newPage;
+        renderUsersTable();
+    }
+
+    // Event listener for filter and sort changes
+    $('#filterByMajor, #sortUsers').change(function () {
+        renderUsersTable();
+    });
+
+    // Fetch users and render table initially
+    fetchAllUsersWithPortfolio();
+});
+$(document).ready(function () {
     $('#sendNotificationBtn').click(function () {
         const notificationText = $('#notificationText').val();
 
@@ -252,8 +270,8 @@
     });
 });
 
-
     </script>
+    
     
 </body>
 </html>
