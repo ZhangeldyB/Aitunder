@@ -4,6 +4,8 @@ import (
 	"Aitunder/models"
 	"context"
 	"fmt"
+	"sync"
+	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -306,18 +308,39 @@ func addLikedUser(loggedInUserID, userID string) error {
 	return nil
 }
 
-func sendNotificationEmail(email, message string) error {
+// проверить по 10/100/1000 горутин и найти оптимальный
+
+func sendNotificationEmail(message string, users []models.User) int {
+	dialer := gomail.NewDialer("smtp.gmail.com", 587, "aitunderapp.notifications@gmail.com", "hbgr gnxq enfr zmtn")
+	start := time.Now()
+	count := len(users)
+	var wg sync.WaitGroup
+	wg.Add(len(users))
+	for i, user := range users {
+		go func(u models.User) {
+			fmt.Println(i + 1)
+			res := sendEmail(u.Email, message, dialer, &wg)
+			if !res {
+				count--
+			}
+		}(user)
+	}
+	wg.Wait()
+	fmt.Printf("Time spent for sending %v emails: %v\n", count, time.Since(start))
+
+	return count
+}
+
+func sendEmail(email, message string, dialer *gomail.Dialer, wg *sync.WaitGroup) bool {
+	defer wg.Done()
 	mailer := gomail.NewMessage()
 	mailer.SetHeader("From", "aitunderapp.notifications@gmail.com")
 	mailer.SetHeader("To", email)
 	mailer.SetHeader("Subject", "Notification")
 	mailer.SetBody("text/plain", message)
-
-	dialer := gomail.NewDialer("smtp.gmail.com", 587, "aitunderapp.notifications@gmail.com", "hbgr gnxq enfr zmtn")
-
 	if err := dialer.DialAndSend(mailer); err != nil {
-		return err
+		log.Error("Failed to send an email notification for: ", email)
+		return false
 	}
-
-	return nil
+	return true
 }

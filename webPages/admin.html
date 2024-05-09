@@ -217,15 +217,13 @@ $(document).ready(function () {
             </li>
         `);
 
-        // Attach event listener to pagination links
         paginationContainer.find('.page-link').click(function(event) {
             event.preventDefault();
             const newPage = $(this).data('page');
-            changePage(newPage, totalPages); // Pass totalPages to changePage function
+            changePage(newPage, totalPages);
         });
     }
 
-    // Function to change page
     function changePage(newPage, totalPages) {
         if (newPage < 1 || newPage > totalPages) {
             return;
@@ -234,25 +232,24 @@ $(document).ready(function () {
         renderUsersTable();
     }
 
-    // Event listener for filter and sort changes
     $('#filterByMajor, #sortUsers').change(function () {
         renderUsersTable();
     });
 
-    // Fetch users and render table initially
     fetchAllUsersWithPortfolio();
 });
+
+// Send mailing
+
 $(document).ready(function () {
     $('#sendNotificationBtn').click(function () {
         const notificationText = $('#notificationText').val();
 
-        // Validate notification text
         if (notificationText.trim() === '') {
             alert('Please enter a notification message.');
             return;
         }
 
-        // Send notification message to backend
         $.ajax({
             url: '/api/sendNotification',
             method: 'POST',

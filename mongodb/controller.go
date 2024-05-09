@@ -179,7 +179,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	if cookie.Value == user.Id.Hex() {
 		log.Info("login with cookies")
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Login successful", "status": 200})
-		return
+
 	} else if user.Id.Hex() != "" {
 		cookie.Value = user.Id.Hex()
 		cookie.Path = "/"
@@ -261,6 +261,17 @@ func ServerCardUsers(w http.ResponseWriter, r *http.Request) {
 		log.Error("cannot set project viewed ", err)
 	}
 
+	data := CreateUserCardData(user)
+
+	err = coWorkerTemplate.Execute(w, data)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		log.Error("Error rendering card-user template")
+		return
+	}
+}
+
+func CreateUserCardData(user models.UserFull) map[string]interface{} {
 	data := map[string]interface{}{
 		"ID":   user.ID.Hex(),
 		"Name": user.Name,
@@ -271,13 +282,7 @@ func ServerCardUsers(w http.ResponseWriter, r *http.Request) {
 			"Skills":            user.Profile.Skills,
 		},
 	}
-
-	err = coWorkerTemplate.Execute(w, data)
-	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		log.Error("Error rendering card-user template")
-		return
-	}
+	return data
 }
 
 func ServeCardProjects(w http.ResponseWriter, r *http.Request) {
@@ -382,15 +387,13 @@ func SendNotificationToUsers(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	for _, user := range authorizedUsers {
-		err := sendNotificationEmail(user.Email, notificationMessage)
-		if err != nil {
-			log.Error("Failed to send notification email to user:", user.Email)
-			continue
-		}
+	fmt.Println("start")
+	successfullEmails := sendNotificationEmail(notificationMessage, authorizedUsers)
+	if successfullEmails == 0 {
+		log.Error("Failed to send email notifications")
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Notification sent to all authorized users", "status": 200})
+		return
 	}
-
-	// Respond with success message
 	json.NewEncoder(w).Encode(map[string]interface{}{"message": "Notification sent to all authorized users", "status": 200})
 }
 
@@ -425,7 +428,6 @@ func LikeUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// You can send a success response if needed
 	json.NewEncoder(w).Encode(map[string]interface{}{"message": "User liked", "status": 200})
 	log.Error("user ", data["userID"], " was liked by ", loggedInUserID)
 }
