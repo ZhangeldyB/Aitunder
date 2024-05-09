@@ -308,17 +308,14 @@ func addLikedUser(loggedInUserID, userID string) error {
 	return nil
 }
 
-// проверить по 10/100/1000 горутин и найти оптимальный
-
 func sendNotificationEmail(message string, users []models.User) int {
 	dialer := gomail.NewDialer("smtp.gmail.com", 587, "aitunderapp.notifications@gmail.com", "hbgr gnxq enfr zmtn")
 	start := time.Now()
 	count := len(users)
 	var wg sync.WaitGroup
 	wg.Add(len(users))
-	for i, user := range users {
+	for _, user := range users {
 		go func(u models.User) {
-			fmt.Println(i + 1)
 			res := sendEmail(u.Email, message, dialer, &wg)
 			if !res {
 				count--
