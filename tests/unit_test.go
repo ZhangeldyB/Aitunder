@@ -1,8 +1,8 @@
 package main
 
 import (
-	"Aitunder/models"
-	"Aitunder/mongodb"
+	"Aitunder/internal/models"
+	"Aitunder/internal/mongodb"
 	"reflect"
 	"testing"
 

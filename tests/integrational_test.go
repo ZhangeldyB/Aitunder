@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Aitunder/mongodb"
+	"Aitunder/internal/mongodb"
 	"net/http"
 	"net/http/httptest"
 	"strings"

@@ -1,7 +1,7 @@
 package mongodb
 
 import (
-	"Aitunder/models"
+	"Aitunder/internal/models"
 	"context"
 	"fmt"
 	"sync"

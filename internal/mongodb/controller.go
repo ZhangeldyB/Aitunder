@@ -1,7 +1,7 @@
 package mongodb
 
 import (
-	"Aitunder/models"
+	"Aitunder/internal/models"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -179,6 +179,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	if cookie.Value == user.Id.Hex() {
 		log.Info("login with cookies")
 		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Login successful", "status": 200})
+		return
 
 	} else if user.Id.Hex() != "" {
 		cookie.Value = user.Id.Hex()
@@ -199,9 +200,9 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-var profileTemplate = template.Must(template.ParseFiles("./webPages/templates/home.html"))
-var coWorkerTemplate = template.Must(template.ParseFiles("./webPages/templates/coWorkers.html"))
-var projectTemplate = template.Must(template.ParseFiles("./webPages/templates/projects.html"))
+var profileTemplate = template.Must(template.ParseFiles("./templates/home.html"))
+var coWorkerTemplate = template.Must(template.ParseFiles("./templates/coWorkers.html"))
+var projectTemplate = template.Must(template.ParseFiles("./templates/projects.html"))
 
 func ServeProfile(w http.ResponseWriter, r *http.Request) {
 	cookie, err := r.Cookie("sessionID")

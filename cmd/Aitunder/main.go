@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Aitunder/mongodb"
+	"Aitunder/internal/mongodb"
 	"fmt"
 	"io"
 	"net/http"
@@ -12,14 +12,13 @@ import (
 )
 
 var log = logrus.New()
-var limiter = rate.NewLimiter(3, 5) // Rate limit of 3 requests per second with a burst of 5 requests
+var limiter = rate.NewLimiter(3, 5)
 
 func init() {
 	file, err := os.OpenFile("logfile.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err == nil {
 		log.SetOutput(file)
 	} else {
-		// If unable to open the log file, log to standard output
 		log.Warn("Failed to open log file. Logging to standard output.")
 	}
 
@@ -41,17 +40,17 @@ func handleWithRateLimit(handler http.HandlerFunc) http.HandlerFunc {
 func pageHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
 	case "/":
-		servePage(w, "webPages/registration.html")
+		servePage(w, "./templates/registration.html")
 	case "/login":
-		servePage(w, "webPages/login.html")
+		servePage(w, "./templates/login.html")
 	case "/home":
-		servePage(w, "webPages/home.html")
+		servePage(w, "./templates/home.html")
 	case "/admin":
-		servePage(w, "webPages/admin.html")
+		servePage(w, "./templates/admin.html")
 	case "/profile":
-		servePage(w, "webPages/profile.html")
+		servePage(w, "./templates/profile.html")
 	case "/project":
-		servePage(w, "webPages/project.html")
+		servePage(w, "./templates/project.html")
 	default:
 		http.NotFound(w, r)
 		defer r.Body.Close()
@@ -81,7 +80,6 @@ func testRequest(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	// http.HandleFunc("/main", pageHandler)
 	http.HandleFunc("/login", pageHandler)
 	http.HandleFunc("/admin", pageHandler)
 	http.HandleFunc("/profile", pageHandler)
