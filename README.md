@@ -44,9 +44,9 @@ Tinder features that will be implemented in this project: (*in order to understa
 
     -   `models.go`: Defines the data model for the user entity. The `User` struct includes fields such as ID, Name, Email, and Password, mapped to MongoDB BSON properties.
 
-![main page](image.png)
+![main page](static/images/image.png)
 
-![login](image-1.png)
+![login](static/images/image-1.png)
 
 **Step-by-step instructions for launching the application (server, webpage, etc.)**
 

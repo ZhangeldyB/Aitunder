@@ -11,6 +11,7 @@ import (
 	"text/template"
 
 	"github.com/sirupsen/logrus"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -25,6 +26,7 @@ const colName = "users"
 
 var collection *mongo.Collection
 var projectCollection *mongo.Collection
+var ChatsCollection *mongo.Collection
 
 func init() {
 	file, err := os.OpenFile("logfile.log", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
@@ -46,6 +48,7 @@ func init() {
 
 	collection = client.Database(dbName).Collection(colName)
 	projectCollection = client.Database(dbName).Collection("projects")
+	ChatsCollection = client.Database(dbName).Collection("chats")
 }
 
 func GetAllUsers(w http.ResponseWriter, r *http.Request) {
@@ -212,7 +215,7 @@ func ServeProfile(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	user, err := getOneUserByID(cookie.Value)
+	user, err := GetOneUserByID(cookie.Value)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		log.Error("Error retrieving users profiles ", err)
@@ -225,10 +228,19 @@ func ServeProfile(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := models.UserProjectCombined{
-		User:     user,
-		Projects: projects,
+	likedUsers, err := getLikedUsers(user.LikedUsers)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		log.Error("Error retrieving Liked users ", err)
+		return
 	}
+
+	data := models.UserProjectLikedUsersCombined{
+		User:       user,
+		Projects:   projects,
+		LikedUsers: likedUsers,
+	}
+
 	err = profileTemplate.Execute(w, data)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
@@ -431,4 +443,35 @@ func LikeUser(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(map[string]interface{}{"message": "User liked", "status": 200})
 	log.Error("user ", data["userID"], " was liked by ", loggedInUserID)
+}
+
+func FetchChatHistory(userID, secondUserID string) ([]models.ChatMessage, error) {
+	userObjectID, err := primitive.ObjectIDFromHex(userID)
+	if err != nil {
+		return nil, err
+	}
+	secondUserObjectID, err := primitive.ObjectIDFromHex(secondUserID)
+	if err != nil {
+		return nil, err
+	}
+
+	filter := bson.M{
+		"$or": []bson.M{
+			{"senderID": userObjectID, "recipientID": secondUserObjectID},
+			{"senderID": secondUserObjectID, "recipientID": userObjectID},
+		},
+	}
+
+	cursor, err := ChatsCollection.Find(context.Background(), filter)
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(context.Background())
+
+	var messages []models.ChatMessage
+	if err = cursor.All(context.Background(), &messages); err != nil {
+		return nil, err
+	}
+
+	return messages, nil
 }

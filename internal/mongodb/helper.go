@@ -65,7 +65,7 @@ func getFullFromDB() []models.UserFull {
 	return users
 }
 
-func getOneUserByID(userID string) (models.UserFull, error) {
+func GetOneUserByID(userID string) (models.UserFull, error) {
 	var user models.UserFull
 	id, err := primitive.ObjectIDFromHex(userID)
 	if err != nil {
@@ -340,4 +340,19 @@ func sendEmail(email, message string, dialer *gomail.Dialer, wg *sync.WaitGroup)
 		return false
 	}
 	return true
+}
+
+func getLikedUsers(likedUsers []primitive.ObjectID) ([]models.User, error) {
+	users := []models.User{}
+	for _, id := range likedUsers {
+		var user models.User
+		filter := bson.M{"_id": id}
+		err := collection.FindOne(context.Background(), filter).Decode(&user)
+		if err != nil {
+			log.Error("Failed to retrive user with id: ", id)
+			return nil, err
+		}
+		users = append(users, user)
+	}
+	return users, nil
 }

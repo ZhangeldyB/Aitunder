@@ -10,6 +10,7 @@ type User struct {
 	Profile          Profile              `json:"profile,omitempty"`
 	AccountActivated bool                 `json:"accountActivated,omitempty" bson:"accountActivated,omitempty"`
 	ViewedBy         []primitive.ObjectID `json:"viewedBy,omitempty" bson:"viewedBy,omitempty"`
+	LikedUsers       []primitive.ObjectID `json:"likedUsers" bson:"likedUsers"`
 }
 
 type Profile struct {
@@ -49,7 +50,8 @@ type Project struct {
 	ViewedBy    []primitive.ObjectID `json:"viewedBy,omitempty" bson:"viewedBy,omitempty"`
 }
 
-type UserProjectCombined struct {
-	User     UserFull  `json:"user" bson:"user"`
-	Projects []Project `json:"project" bson:"project"`
+type UserProjectLikedUsersCombined struct {
+	User       UserFull  `json:"user" bson:"user"`
+	Projects   []Project `json:"project" bson:"project"`
+	LikedUsers []User    `jdon:"likedUsers" bson:"likedUsers"`
 }

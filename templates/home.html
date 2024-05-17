@@ -177,28 +177,96 @@
                 </div>
               </div>
               <div class="row gutters-sm">
-                <div class="col-sm-12 mb-3">
+                <div class="col-sm-6 mb-3">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Projects</h5>
-                            {{range .Projects}}
+                            <h5 class="card-title">Liked Users</h5>
+                            {{range .LikedUsers}}
                                 <div class="card mb-3">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{.Title}}</h5>
-                                        <p class="card-text">Description: {{.Description}}</p>
-                                        <p class="card-text"><strong>Skills Required:</strong> {{range .Skills}}{{.}}, {{end}}</p>
-                                    </div>
+                                        <h5 class="card-title">{{.Name}}</h5>
+                                        <p class="card-text">Email: {{.Email}}</p>
+                                        <button class="btn btn-primary liked-user" data-recipient-id="{{.Id.Hex}}" data-recipient-name="{{.Name}}">Message this User</button>
+                                      </div>
                                 </div>
                             {{else}}
-                                <p>No projects available</p>
+                                <p>No users are matched yet</p>
                             {{end}}
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                      <div class="card-body">
+                          <h5 class="card-title">Projects</h5>
+                          {{range .Projects}}
+                              <div class="card mb-3">
+                                  <div class="card-body">
+                                      <h5 class="card-title">{{.Title}}</h5>
+                                      <p class="card-text">Description: {{.Description}}</p>
+                                      <p class="card-text"><strong>Skills Required:</strong> {{range .Skills}}{{.}}, {{end}}</p>
+                                  </div>
+                              </div>
+                          {{else}}
+                              <p>No projects available</p>
+                          {{end}}
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row gutters-sm">
+              <div id="chat-box" style="display:none;">
+                <h5>Chat</h5>
+                <div id="messages" style="border: 1px solid #ccc; height: 300px; overflow-y: scroll; padding: 10px;"></div>
+                <input type="text" id="message-input" placeholder="Type a message..." class="form-control">
+                <button id="send-button" class="btn btn-primary mt-2">Send</button>
+              </div>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <script>
+          let ws;
+  
+          function openChat(recipientId, recipientName) {
+              document.getElementById('chat-box').style.display = 'block';
+              ws = new WebSocket('ws://' + window.location.host + '/ws?otherUserID=' +  recipientId);
+  
+              ws.onopen = function() {
+                  console.log('WebSocket connection opened');
+              };
+  
+              ws.onmessage = function(event) {
+                const messages = document.getElementById('messages');
+                messages.innerHTML += '<div>' + event.data + '</div>';
+                messages.scrollTop = messages.scrollHeight;
+              };
+  
+              ws.onclose = function() {
+                  console.log('WebSocket connection closed');
+              };
+  
+              document.getElementById('send-button').onclick = function() {
+                  const messageInput = document.getElementById('message-input');
+                  const message = {
+                      recipient: recipientId,
+                      recipientName: recipientName,
+                      senderName: '{{.User.Name}}',
+                      text: messageInput.value
+                  };
+                  ws.send(JSON.stringify(message));
+                  messageInput.value = '';
+              };
+          }
+  
+          document.querySelectorAll('.liked-user').forEach(button => {
+              button.addEventListener('click', function() {
+                  const recipientId = this.dataset.recipientId;
+                  const recipientName = this.dataset.recipientName;
+                  openChat(recipientId, recipientName);
+              });
+          });
+        </script>
       </body>
 </html>

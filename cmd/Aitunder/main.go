@@ -2,6 +2,7 @@ package main
 
 import (
 	"Aitunder/internal/mongodb"
+	"Aitunder/internal/websocket"
 	"fmt"
 	"io"
 	"net/http"
@@ -27,6 +28,7 @@ func init() {
 
 	log.Info("Logging initialized")
 }
+
 func handleWithRateLimit(handler http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if !limiter.Allow() {
@@ -97,6 +99,7 @@ func main() {
 	http.HandleFunc("/api/project/add", mongodb.AddProject)
 	http.HandleFunc("/api/getAllUsers", mongodb.GetAllUsers)
 	http.HandleFunc("/verify", mongodb.VerifyAccount)
+	http.HandleFunc("/ws", websocket.HandleConnections)
 	http.HandleFunc("/", handleWithRateLimit(pageHandler))
 	fmt.Println("Server is running on http://localhost:8080/main")
 	err := http.ListenAndServe(":8080", nil)
