@@ -228,7 +228,7 @@ func ServeProfile(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	likedUsers, err := getLikedUsers(user.LikedUsers)
+	matchedUsers, err := getMatchedUsers(user.LikedUsers, user.ID)
 	if err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		log.Error("Error retrieving Liked users ", err)
@@ -236,9 +236,9 @@ func ServeProfile(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := models.UserProjectLikedUsersCombined{
-		User:       user,
-		Projects:   projects,
-		LikedUsers: likedUsers,
+		User:         user,
+		Projects:     projects,
+		MatchedUsers: matchedUsers,
 	}
 
 	err = profileTemplate.Execute(w, data)
@@ -247,6 +247,40 @@ func ServeProfile(w http.ResponseWriter, r *http.Request) {
 		log.Error("Error rendering profile template")
 		return
 	}
+}
+
+func UnlikeUser(w http.ResponseWriter, r *http.Request) {
+	type UnlikeRequest struct {
+		UserToUnlike string `json:"userToUnlike"`
+	}
+	var userToUnlike UnlikeRequest
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, "Failed to read request body", http.StatusBadRequest)
+		return
+	}
+	defer r.Body.Close()
+	err = json.Unmarshal(body, &userToUnlike)
+	if err != nil {
+		http.Error(w, "Failed to parse request body", http.StatusBadRequest)
+		return
+	}
+	unlikeId, _ := primitive.ObjectIDFromHex(userToUnlike.UserToUnlike)
+	cookie, err := r.Cookie("sessionID")
+	if err != nil {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		log.Error("Unauthorized access")
+		return
+	}
+	userId, _ := primitive.ObjectIDFromHex(cookie.Value)
+	err = unlike(unlikeId, userId)
+	if err != nil {
+		log.Error("Failed to Unlike User")
+		json.NewEncoder(w).Encode(map[string]interface{}{"message": "Failed to Unlike User", "status": 400})
+		return
+	}
+	json.NewEncoder(w).Encode(map[string]interface{}{"message": "Success", "status": 200})
+
 }
 
 func ServerCardUsers(w http.ResponseWriter, r *http.Request) {

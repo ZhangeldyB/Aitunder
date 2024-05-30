@@ -43,3 +43,55 @@
 {"level":"info","msg":"Logging initialized","time":"2024-05-17T12:36:57+05:00"}
 {"level":"info","msg":"MongoDB connection success","time":"2024-05-17T12:40:59+05:00"}
 {"level":"info","msg":"Logging initialized","time":"2024-05-17T12:40:59+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-17T15:15:18+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-17T15:15:18+05:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e439511930d4a252d62968\") ObjectID(\"65e4321684ae624eb32da648\")","time":"2024-05-17T15:22:22+05:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e439421930d4a252d628e4\") ObjectID(\"65e4321684ae624eb32da648\")","time":"2024-05-17T15:22:37+05:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e439501930d4a252d62960\") ObjectID(\"65e4321684ae624eb32da648\")","time":"2024-05-17T15:24:52+05:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e439451930d4a252d628fc\") ObjectID(\"65e42db1fd5a61a19730b65f\")","time":"2024-05-17T15:29:35+05:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e439481930d4a252d62916\") ObjectID(\"65e4321684ae624eb32da648\")","time":"2024-05-17T15:31:13+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-22T15:09:53+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-22T15:09:53+05:00"}
+{"level":"info","msg":"New session with id65e42db1fd5a61a19730b65f","time":"2024-05-22T15:10:15+05:00"}
+{"level":"info","msg":"login with cookies","time":"2024-05-22T15:10:15+05:00"}
+{"level":"error","msg":"Failed to retrive user with id: ObjectID(\"65e439411930d4a252d628dc\")","time":"2024-05-22T15:10:16+05:00"}
+{"level":"error","msg":"Error retrieving Liked users the provided hex string is not a valid ObjectID","time":"2024-05-22T15:10:16+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-22T15:13:20+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-22T15:13:20+05:00"}
+{"level":"error","msg":"Error rendering profile template","time":"2024-05-22T15:13:36+05:00"}
+{"level":"info","msg":"login with cookies","time":"2024-05-22T15:14:19+05:00"}
+{"level":"error","msg":"Error rendering profile template","time":"2024-05-22T15:14:21+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-22T15:16:37+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-22T15:16:37+05:00"}
+{"level":"error","msg":"Error rendering profile template","time":"2024-05-22T15:17:56+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-22T15:20:52+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-22T15:20:52+05:00"}
+{"level":"error","msg":"Error rendering profile template","time":"2024-05-22T15:21:03+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-22T15:22:25+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-22T15:22:25+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T00:10:36+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T00:10:36+05:00"}
+{"level":"error","msg":"Error checking user credentials","time":"2024-05-31T00:11:13+05:00"}
+{"level":"info","msg":"New session with id65e42db1fd5a61a19730b65f","time":"2024-05-31T00:11:36+05:00"}
+{"level":"info","msg":"login with cookies","time":"2024-05-31T00:11:36+05:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e4394f1930d4a252d62954\") ObjectID(\"65e42db1fd5a61a19730b65f\")","time":"2024-05-31T00:11:43+05:00"}
+{"level":"error","msg":"user 65e4394f1930d4a252d62954 was liked by 65e42db1fd5a61a19730b65f","time":"2024-05-31T00:11:48+05:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e439521930d4a252d6296e\") ObjectID(\"65e42db1fd5a61a19730b65f\")","time":"2024-05-31T00:11:49+05:00"}
+{"level":"error","msg":"user 65e439521930d4a252d6296e was liked by 65e42db1fd5a61a19730b65f","time":"2024-05-31T00:11:52+05:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e4394d1930d4a252d62944\") ObjectID(\"65e42db1fd5a61a19730b65f\")","time":"2024-05-31T00:11:52+05:00"}
+{"level":"error","msg":"user 65e4394d1930d4a252d62944 was liked by 65e42db1fd5a61a19730b65f","time":"2024-05-31T00:11:53+05:00"}
+{"level":"info","msg":"user got viewed, ObjectID(\"65e439481930d4a252d62916\") ObjectID(\"65e42db1fd5a61a19730b65f\")","time":"2024-05-31T00:11:54+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T00:18:29+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T00:18:29+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T00:26:40+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T00:26:40+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T00:34:21+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T00:34:21+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T00:40:24+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T00:40:24+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T00:43:22+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T00:43:22+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T00:44:18+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T00:44:18+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T00:59:30+05:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T00:59:30+05:00"}

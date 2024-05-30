@@ -100,6 +100,7 @@ func main() {
 	http.HandleFunc("/api/getAllUsers", mongodb.GetAllUsers)
 	http.HandleFunc("/verify", mongodb.VerifyAccount)
 	http.HandleFunc("/ws", websocket.HandleConnections)
+	http.HandleFunc("/unlike", mongodb.UnlikeUser)
 	http.HandleFunc("/", handleWithRateLimit(pageHandler))
 	fmt.Println("Server is running on http://localhost:8080/main")
 	err := http.ListenAndServe(":8080", nil)

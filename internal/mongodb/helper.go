@@ -9,6 +9,7 @@ import (
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo/options"
 	"gopkg.in/gomail.v2"
 )
 
@@ -46,6 +47,16 @@ func insertOneProject(project models.Project) (string, error) {
 // 	}
 // }
 
+func unlike(userToUnlike, user primitive.ObjectID) error {
+	filter := bson.M{"_id": user}
+	update := bson.M{"$pull": bson.M{"likedUsers": userToUnlike}}
+	_, err := collection.UpdateOne(context.Background(), filter, update)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func getFullFromDB() []models.UserFull {
 	cursor, err := collection.Find(context.Background(), bson.D{{}})
 	if err != nil {
@@ -78,6 +89,7 @@ func GetOneUserByID(userID string) (models.UserFull, error) {
 	}
 	return user, nil
 }
+
 func getProjectsByID(userID string) ([]models.Project, error) {
 	id, err := primitive.ObjectIDFromHex(userID)
 	if err != nil {
@@ -342,17 +354,24 @@ func sendEmail(email, message string, dialer *gomail.Dialer, wg *sync.WaitGroup)
 	return true
 }
 
-func getLikedUsers(likedUsers []primitive.ObjectID) ([]models.User, error) {
-	users := []models.User{}
-	for _, id := range likedUsers {
-		var user models.User
-		filter := bson.M{"_id": id}
-		err := collection.FindOne(context.Background(), filter).Decode(&user)
+func getMatchedUsers(likedUsers []primitive.ObjectID, id primitive.ObjectID) ([]models.UserFull, error) {
+	users := []models.UserFull{}
+	for _, Lid := range likedUsers {
+		filter := bson.M{"_id": Lid, "likedUsers": bson.M{"$in": []interface{}{id}}}
+		opts := options.Count()
+		count, err := collection.CountDocuments(context.Background(), filter, opts)
 		if err != nil {
-			log.Error("Failed to retrive user with id: ", id)
+			log.Error("Failed to check liked users of ", id)
 			return nil, err
 		}
-		users = append(users, user)
+		if count == 1 {
+			user, err := GetOneUserByID(Lid.Hex())
+			if err != nil {
+				log.Error("Failed to retrive user with id: ", Lid)
+				return nil, err
+			}
+			users = append(users, user)
+		}
 	}
 	return users, nil
 }

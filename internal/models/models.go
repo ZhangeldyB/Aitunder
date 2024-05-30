@@ -51,7 +51,7 @@ type Project struct {
 }
 
 type UserProjectLikedUsersCombined struct {
-	User       UserFull  `json:"user" bson:"user"`
-	Projects   []Project `json:"project" bson:"project"`
-	LikedUsers []User    `jdon:"likedUsers" bson:"likedUsers"`
+	User         UserFull   `json:"user" bson:"user"`
+	Projects     []Project  `json:"project" bson:"project"`
+	MatchedUsers []UserFull `jdon:"likedUsers" bson:"likedUsers"`
 }

@@ -180,13 +180,14 @@
                 <div class="col-sm-6 mb-3">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Liked Users</h5>
-                            {{range .LikedUsers}}
+                            <h5 class="card-title">Matched Users</h5>
+                            {{range .MatchedUsers}}
                                 <div class="card mb-3">
                                     <div class="card-body">
                                         <h5 class="card-title">{{.Name}}</h5>
                                         <p class="card-text">Email: {{.Email}}</p>
-                                        <button class="btn btn-primary liked-user" data-recipient-id="{{.Id.Hex}}" data-recipient-name="{{.Name}}">Message this User</button>
+                                        <button class="btn btn-primary liked-user" data-recipient-id="{{.ID.Hex}}" data-recipient-name="{{.Name}}">Message this User</button>
+                                        <button class="btn btn-primary unlike-user" data-id="{{.ID.Hex}}" >UnLike the User</button>
                                       </div>
                                 </div>
                             {{else}}
@@ -267,6 +268,33 @@
                   openChat(recipientId, recipientName);
               });
           });
+
+          document.querySelectorAll('.unlike-user').forEach(button => {
+            button.addEventListener('click', function(){
+              const userToUnlikeID = this.dataset.id;
+              unlike(userToUnlikeID);
+            })
+          })
+
+          function unlike(userToUnlikeID){
+            const formData = {userToUnlike: userToUnlikeID};
+            fetch("/unlike", {
+              method: 'POST',
+              headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                    if (data.status === 400) {
+                        alert('failed to Unlike User');
+                        window.location.reload();
+                    }else if(data.status === 200){
+                      window.location.reload();
+                    }
+                  })
+          }
         </script>
       </body>
 </html>
