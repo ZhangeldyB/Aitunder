@@ -3,13 +3,18 @@ package main
 import (
 	"Aitunder/internal/mongodb"
 	"Aitunder/internal/websocket"
+	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
 	"os"
 
+	pb "github.com/whateveer/payment-grpc/cmd/grpc-microservice/payment"
+
 	"github.com/sirupsen/logrus"
 	"golang.org/x/time/rate"
+	"google.golang.org/grpc"
 )
 
 var log = logrus.New()
@@ -53,21 +58,12 @@ func pageHandler(w http.ResponseWriter, r *http.Request) {
 		servePage(w, "./templates/profile.html")
 	case "/project":
 		servePage(w, "./templates/project.html")
+	case "/upgrade":
+		servePage(w, "./templates/payment.html")
 	default:
 		http.NotFound(w, r)
 		defer r.Body.Close()
 	}
-}
-
-func servePage(w http.ResponseWriter, pagePath string) {
-	htmlContent, err := os.ReadFile(pagePath)
-	if err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		return
-	}
-
-	w.Header().Set("Content-Type", "text/html")
-	w.Write(htmlContent)
 }
 
 func testRequest(w http.ResponseWriter, r *http.Request) {
@@ -81,12 +77,82 @@ func testRequest(w http.ResponseWriter, r *http.Request) {
 	w.Write(message)
 }
 
+func servePage(w http.ResponseWriter, pagePath string) {
+	htmlContent, err := os.ReadFile(pagePath)
+	if err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "text/html")
+	w.Write(htmlContent)
+}
+
+func handlePayment(w http.ResponseWriter, r *http.Request) {
+	var paymentRequest struct {
+		CardNumber   string `json:"cardNumber"`
+		ExpiryDate   string `json:"expiryDate"`
+		Cvv          string `json:"cvv"`
+		CustomerName string `json:"customerName"`
+	}
+	err := json.NewDecoder(r.Body).Decode(&paymentRequest)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	cookie, err := r.Cookie("sessionID")
+	if err != nil {
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		return
+	}
+	userID := cookie.Value
+
+	user, err := mongodb.GetOneUserByID(userID)
+	if err != nil {
+		http.Error(w, "Failed to get user details", http.StatusInternalServerError)
+		return
+	}
+
+	conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
+	if err != nil {
+		http.Error(w, "Failed to connect to gRPC server", http.StatusInternalServerError)
+		return
+	}
+	defer conn.Close()
+
+	client := pb.NewPaymentServiceClient(conn)
+	resp, err := client.ProcessPayment(context.Background(), &pb.PaymentRequest{
+		CardNumber:   paymentRequest.CardNumber,
+		ExpiryDate:   paymentRequest.ExpiryDate,
+		Cvv:          paymentRequest.Cvv,
+		CustomerName: paymentRequest.CustomerName,
+		Email:        user.Email, // Add email from user details
+		FullName:     user.Name,  // Add full name from user details
+	})
+	if err != nil {
+		http.Error(w, "Payment failed", http.StatusInternalServerError)
+		return
+	}
+
+	// Update user details
+	err = mongodb.UpdateUserAfterPayment(userID)
+	if err != nil {
+		http.Error(w, "Failed to update user details", http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprintf(w, `{"status": "success", "transactionId": "%s"}`, resp.TransactionId)
+}
+
 func main() {
 	http.HandleFunc("/login", pageHandler)
 	http.HandleFunc("/admin", pageHandler)
 	http.HandleFunc("/profile", pageHandler)
 	http.HandleFunc("/project", pageHandler)
+	http.HandleFunc("/upgrade", pageHandler)
 	http.HandleFunc("/api/test", testRequest)
+	http.HandleFunc("/api/pay", handlePayment)
 	http.HandleFunc("/api/signUp", mongodb.AddUser)
 	http.HandleFunc("/api/login", mongodb.LoginHandler)
 	http.HandleFunc("/api/sendNotification", mongodb.SendNotificationToUsers)

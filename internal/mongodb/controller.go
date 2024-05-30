@@ -411,7 +411,7 @@ func VerifyAccount(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to verify account", http.StatusInternalServerError)
 		return
 	}
-	http.Redirect(w, r, "/profile", http.StatusFound)
+	http.Redirect(w, r, "/home", http.StatusFound)
 }
 
 func SendNotificationToUsers(w http.ResponseWriter, r *http.Request) {

@@ -95,3 +95,35 @@
 {"level":"info","msg":"Logging initialized","time":"2024-05-31T00:44:18+05:00"}
 {"level":"info","msg":"MongoDB connection success","time":"2024-05-31T00:59:30+05:00"}
 {"level":"info","msg":"Logging initialized","time":"2024-05-31T00:59:30+05:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T03:46:30+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T03:46:30+06:00"}
+{"level":"info","msg":"New session with id65e42db1fd5a61a19730b65f","time":"2024-05-31T03:46:57+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-05-31T03:46:57+06:00"}
+{"level":"info","msg":"New session with id65e42db1fd5a61a19730b65f","time":"2024-05-31T03:46:57+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-05-31T03:46:57+06:00"}
+{"level":"error","msg":"Error rendering profile template","time":"2024-05-31T03:47:00+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T04:41:25+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T04:41:25+06:00"}
+{"level":"info","msg":"New session with id65e42db1fd5a61a19730b65f","time":"2024-05-31T04:42:28+06:00"}
+{"level":"info","msg":"login with cookies","time":"2024-05-31T04:42:28+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T04:46:55+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T04:46:55+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T05:12:40+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T05:12:40+06:00"}
+{"level":"error","msg":"Error rendering profile template","time":"2024-05-31T05:13:10+06:00"}
+{"level":"error","msg":"Error retrieving users profiles error decoding key name: cannot decode embedded document into a string type","time":"2024-05-31T05:16:35+06:00"}
+{"level":"error","msg":"Error checking user credentials","time":"2024-05-31T05:17:08+06:00"}
+{"level":"error","msg":"Error checking user credentials","time":"2024-05-31T05:17:22+06:00"}
+{"level":"error","msg":"Error checking user credentials","time":"2024-05-31T05:17:40+06:00"}
+{"level":"error","msg":"Error retrieving users profiles error decoding key name: cannot decode embedded document into a string type","time":"2024-05-31T05:17:49+06:00"}
+{"level":"error","msg":"Error checking user credentials","time":"2024-05-31T05:18:23+06:00"}
+{"level":"error","msg":"Error checking user credentials","time":"2024-05-31T05:18:48+06:00"}
+{"level":"error","msg":"Error checking user credentials","time":"2024-05-31T05:20:09+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T05:20:18+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T05:20:18+06:00"}
+{"level":"error","msg":"Error checking user credentials","time":"2024-05-31T05:20:43+06:00"}
+{"level":"error","msg":"Error checking user credentials","time":"2024-05-31T05:21:16+06:00"}
+{"level":"info","msg":"MongoDB connection success","time":"2024-05-31T05:31:04+06:00"}
+{"level":"info","msg":"Logging initialized","time":"2024-05-31T05:31:04+06:00"}
+{"level":"info","msg":"New session with id 65e4308fdc7c0a74aadd430f","time":"2024-05-31T05:32:03+06:00"}
+{"level":"info","msg":"Login successful","time":"2024-05-31T05:32:03+06:00"}

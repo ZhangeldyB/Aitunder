@@ -375,3 +375,33 @@ func getMatchedUsers(likedUsers []primitive.ObjectID, id primitive.ObjectID) ([]
 	}
 	return users, nil
 }
+
+func UpdateUserAfterPayment(userID string) error {
+	id, err := primitive.ObjectIDFromHex(userID)
+	if err != nil {
+		return err
+	}
+
+	filter := bson.M{"_id": id}
+	var user models.User
+	err = collection.FindOne(context.Background(), filter).Decode(&user)
+	if err != nil {
+		return err
+	}
+
+	updatedName := user.Name + " <✔>"
+
+	update := bson.M{
+		"$set": bson.M{
+			"upgradeStatus": true,
+			"name":          updatedName,
+		},
+	}
+
+	_, err = collection.UpdateOne(context.Background(), filter, update)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
